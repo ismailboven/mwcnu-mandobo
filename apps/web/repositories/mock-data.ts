@@ -1,0 +1,111 @@
+import type { ArticleCard, EventCard } from "@mwcnu/types";
+
+/**
+ * Data contoh agar aplikasi tetap berjalan sebelum Supabase dikonfigurasi.
+ * ⚠️ Hapus setelah .env.local terisi & data asli masuk.
+ */
+export const MOCK_ARTICLES: ArticleCard[] = [
+  {
+    id: "00000000-0000-4000-8000-000000000001",
+    title: "Peringatan Hari Santri Nasional 2026 di Mandobo",
+    slug: "peringatan-hari-santri-nasional-2026",
+    excerpt:
+      "MWCNU Mandobo menggelar rangkaian kegiatan memperingati Hari Santri Nasional dengan khidmat...",
+    cover_image_url: null,
+    category_id: "00000000-0000-4000-8000-000000000010",
+    category: { id: "00000000-0000-4000-8000-000000000010", name: "Kegiatan", slug: "kegiatan" },
+    published_at: "2026-10-22T00:00:00+09:00",
+    view_count: 320,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000002",
+    title: "Kajian Rutin Ahad Pagi: Tema Tawasuth dalam Kehidupan",
+    slug: "kajian-rutin-ahad-pagi-tawasuth",
+    excerpt: "Kajian rutin yang diselenggarakan setiap Ahad pagi di Masjid Agung Mandobo...",
+    cover_image_url: null,
+    category_id: "00000000-0000-4000-8000-000000000011",
+    category: { id: "00000000-0000-4000-8000-000000000011", name: "Dakwah", slug: "dakwah" },
+    published_at: "2026-07-19T00:00:00+09:00",
+    view_count: 210,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000003",
+    title: "Pelatihan Kepemimpinan Kader Muda NU Mandobo",
+    slug: "pelatihan-kepemimpinan-kader-muda-nu",
+    excerpt: "Program regenerasi kader bekerja sama dengan LP Ma'arif dan IPNU-IPPNU...",
+    cover_image_url: null,
+    category_id: "00000000-0000-4000-8000-000000000012",
+    category: { id: "00000000-0000-4000-8000-000000000012", name: "Pendidikan", slug: "pendidikan" },
+    published_at: "2026-06-30T00:00:00+09:00",
+    view_count: 150,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000004",
+    title: "Penyaluran Bantuan Sosial untuk Jamaah Terdampak",
+    slug: "penyaluran-bantuan-sosial-jamaah",
+    excerpt: "Lembaga kemasyarakatan MWCNU menyalurkan bantuan kepada jamaah terdampak banjir...",
+    cover_image_url: null,
+    category_id: "00000000-0000-4000-8000-000000000013",
+    category: { id: "00000000-0000-4000-8000-000000000013", name: "Sosial", slug: "sosial" },
+    published_at: "2026-05-12T00:00:00+09:00",
+    view_count: 98,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000005",
+    title: "Silaturahmi Pengurus MWCNU dengan Tokoh Masyarakat",
+    slug: "silaturahmi-pengurus-tokoh-masyarakat",
+    excerpt: "Mempererat ukhuwah dan menyelaraskan program dakwah dengan kebutuhan masyarakat...",
+    cover_image_url: null,
+    category_id: "00000000-0000-4000-8000-000000000010",
+    category: { id: "00000000-0000-4000-8000-000000000010", name: "Kegiatan", slug: "kegiatan" },
+    published_at: "2026-04-20T00:00:00+09:00",
+    view_count: 76,
+  },
+];
+
+export const MOCK_EVENTS: EventCard[] = [
+  {
+    id: "00000000-0000-4000-8000-000000000021",
+    title: "Kajian Rutin Ahad Pagi",
+    slug: "kajian-rutin-ahad-pagi",
+    event_type: "kajian",
+    status: "upcoming",
+    starts_at: "2026-08-09T07:00:00+09:00",
+    ends_at: "2026-08-09T09:00:00+09:00",
+    location: "Masjid Agung Mandobo",
+    cover_image_url: null,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000022",
+    title: "Rapat Pleno Pengurus MWCNU",
+    slug: "rapat-pleno-pengurus",
+    event_type: "rapat",
+    status: "upcoming",
+    starts_at: "2026-08-15T14:00:00+09:00",
+    ends_at: null,
+    location: "Sekretariat MWCNU Mandobo",
+    cover_image_url: null,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000023",
+    title: "Peringatan Tahun Baru Islam 1448 H",
+    slug: "peringatan-tahun-baru-islam-1448-h",
+    event_type: "peringatan",
+    status: "upcoming",
+    starts_at: "2026-08-24T19:00:00+09:00",
+    ends_at: null,
+    location: "Lapangan Serbaguna Mandobo",
+    cover_image_url: null,
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000024",
+    title: "Pelatihan MC & Khitobah untuk Remaja",
+    slug: "pelatihan-mc-khitobah-remaja",
+    event_type: "pelatihan",
+    status: "upcoming",
+    starts_at: "2026-09-05T08:00:00+09:00",
+    ends_at: "2026-09-06T16:00:00+09:00",
+    location: "Aula LP Ma'arif Mandobo",
+    cover_image_url: null,
+  },
+];

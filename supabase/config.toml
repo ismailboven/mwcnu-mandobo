@@ -1,0 +1,56 @@
+project_id = "mwcnu-mandobo"
+
+[api]
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/admin"]
+jwt_expiry = 3600
+enable_signup = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+
+[storage]
+enabled = true
+
+[storage.buckets.public-assets]
+public = true
+file_size_limit = "10MiB"
+
+[storage.buckets.documents]
+public = false
+file_size_limit = "25MiB"
+
+[storage.buckets.media-audio]
+public = true
+file_size_limit = "50MiB"
+
+[storage.buckets.media-video]
+public = true
+file_size_limit = "200MiB"
+
+[storage.buckets.avatars]
+public = true
+file_size_limit = "5MiB"
+
+[analytics]
+enabled = false
