@@ -12,6 +12,7 @@ dist/
 build/
 .turbo/
 coverage/
+*.tsbuildinfo
 
 # env
 .env
