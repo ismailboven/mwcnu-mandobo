@@ -44,9 +44,9 @@ type InsertInput<T> = Omit<T, "id" | "created_at" | "updated_at"> &
 type UpdateInput<T> = Partial<Omit<T, "id">>;
 
 type Table<T> = {
-  Row: T;
-  Insert: InsertInput<T>;
-  Update: UpdateInput<T>;
+  Row: T & Record<string, unknown>;
+  Insert: InsertInput<T> & Record<string, unknown>;
+  Update: UpdateInput<T> & Record<string, unknown>;
   Relationships: [];
 };
 
@@ -76,7 +76,12 @@ export type Database = {
       activity_logs: Table<ActivityLog>;
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      admin_soft_delete_article: {
+        Args: { p_id: string };
+        Returns: undefined;
+      };
+    };
     Enums: {
       role_name: RoleName;
       article_status: ArticleStatus;

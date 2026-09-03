@@ -1,3 +1,9 @@
 export { cn } from "./cn";
 export { slugify, uniqueSlug } from "./slug";
-export { formatDateID, formatDateShortID, formatNumberID, timeAgo } from "./date";
+export {
+  formatDateID,
+  formatDateShortID,
+  formatDateNumericID,
+  formatNumberID,
+  timeAgo,
+} from "./date";

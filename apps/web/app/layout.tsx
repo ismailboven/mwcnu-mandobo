@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import { SiteHeader } from "@/components/layout/site-header";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <QueryProvider>
             <div className="flex min-h-screen flex-col">
-              <Navbar />
+              <SiteHeader />
               <main className="flex-1">{children}</main>
               <Footer />
             </div>

@@ -35,4 +35,41 @@ describe("ArticleCreateSchema", () => {
     });
     expect(result.success).toBe(true);
   });
+
+  it("menerima coverImageUrl kosong (default image dipakai)", () => {
+    const result = ArticleCreateSchema.safeParse({
+      title: "Judul Berita Panjang",
+      content: "isi",
+      coverImageUrl: "",
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.coverImageUrl).toBeUndefined();
+    }
+  });
+
+  it("menolak coverImageUrl yang bukan URL valid", () => {
+    const result = ArticleCreateSchema.safeParse({
+      title: "Judul Berita Panjang",
+      content: "isi",
+      coverImageUrl: "bukan-url",
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("menerima konten HTML dengan gambar tanpa teks", () => {
+    const result = ArticleCreateSchema.safeParse({
+      title: "Judul Berita Panjang",
+      content: '<p><img src="https://example.com/gambar.jpg" alt="foto"></p>',
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("menolak konten HTML kosong (editor kosong menghasilkan <p></p>)", () => {
+    const result = ArticleCreateSchema.safeParse({
+      title: "Judul Berita Panjang",
+      content: "<p></p>",
+    });
+    expect(result.success).toBe(false);
+  });
 });

@@ -1,5 +1,4 @@
 import { Badge, Card, CardContent, CardHeader, CardTitle } from "@mwcnu/ui";
-import { Container } from "@/components/layout/container";
 
 const OVERVIEW = [
   { label: "Berita Terbit", value: "—" },
@@ -10,7 +9,7 @@ const OVERVIEW = [
 
 export default function AdminDashboardPage() {
   return (
-    <Container>
+    <div>
       <div className="flex items-center justify-between">
         <h1 className="font-display text-2xl font-bold">Dashboard</h1>
         <Badge variant="success">Live</Badge>
@@ -20,7 +19,7 @@ export default function AdminDashboardPage() {
         {OVERVIEW.map((item) => (
           <Card key={item.label}>
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-muted-foreground">
+              <CardTitle className="text-muted-foreground text-sm font-semibold">
                 {item.label}
               </CardTitle>
             </CardHeader>
@@ -30,6 +29,6 @@ export default function AdminDashboardPage() {
           </Card>
         ))}
       </div>
-    </Container>
+    </div>
   );
 }

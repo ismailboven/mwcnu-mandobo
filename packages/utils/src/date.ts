@@ -32,6 +32,17 @@ export function formatDateShortID(date: Date | string): string {
 }
 
 /**
+ * Format tanggal numerik ringkas: "23/02/2026".
+ */
+export function formatDateNumericID(date: Date | string): string {
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (Number.isNaN(d.getTime())) return "—";
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  return `${dd}/${mm}/${d.getFullYear()}`;
+}
+
+/**
  * Format angka gaya Indonesia (pemisah ribuan titik).
  */
 export function formatNumberID(value: number): string {

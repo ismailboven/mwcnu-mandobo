@@ -1,0 +1,45 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # Berjalan secara otomatis setiap hari Senin, Rabu, dan Jumat pukul 06:00 UTC (13:00 WIB)
+    - cron: '0 6 * * 1,3,5'
+  # Memungkinkan pemicuan manual dari tab Actions di GitHub
+  workflow_dispatch:
+
+jobs:
+  ping-supabase:
+    name: Ping Supabase REST API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database & REST API
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "❌ Error: SUPABASE_URL atau SUPABASE_ANON_KEY belum diatur di GitHub Secrets."
+            echo "Silakan tambahkan di Settings -> Secrets and variables -> Actions"
+            exit 1
+          fi
+
+          echo "📡 Pinging Supabase REST API ..."
+          
+          # Ping tabel articles & categories untuk memicu aktivitas query database
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            "$SUPABASE_URL/rest/v1/articles?select=id&limit=1")
+          
+          HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d':' -f2)
+          BODY=$(echo "$RESPONSE" | grep -v "HTTP_STATUS")
+          
+          echo "Status: $HTTP_STATUS"
+          echo "Data: $BODY"
+          
+          if [ "$HTTP_STATUS" -eq 200 ] || [ "$HTTP_STATUS" -eq 206 ]; then
+            echo "✅ Supabase tetap aktif! (Status $HTTP_STATUS)"
+          else
+            echo "❌ Gagal terhubung ke Supabase! (Status $HTTP_STATUS)"
+            exit 1
+          fi
