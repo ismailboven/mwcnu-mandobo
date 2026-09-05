@@ -2,6 +2,7 @@ import { cache } from "react";
 import type { CategoryCreateInput, CategoryUpdateInput } from "@mwcnu/validations";
 import { slugify } from "@mwcnu/utils";
 import { createServerSupabase } from "@/lib/supabase/server";
+import { createPublicSupabase } from "@/lib/supabase/public";
 
 export interface CategoryOption {
   id: string;
@@ -19,7 +20,7 @@ export interface AdminCategory extends CategoryOption {
 
 export const listActiveCategories = cache(async (): Promise<CategoryOption[]> => {
   try {
-    const supabase = await createServerSupabase();
+    const supabase = createPublicSupabase();
     const { data, error } = await supabase
       .from("categories")
       .select("id,name,slug")

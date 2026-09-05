@@ -1,6 +1,6 @@
 import { cache } from "react";
 import type { EventCard } from "@mwcnu/types";
-import { createServerSupabase } from "@/lib/supabase/server";
+import { createPublicSupabase } from "@/lib/supabase/public";
 import { MOCK_EVENTS } from "./mock-data";
 
 const isSupabaseConfigured = () =>
@@ -15,7 +15,7 @@ export const listUpcomingEvents = cache(
     }
 
     try {
-      const supabase = await createServerSupabase();
+      const supabase = createPublicSupabase();
       const { data, error } = await supabase
         .from("events")
         .select("id,title,slug,event_type,status,starts_at,ends_at,location,cover_image_url")

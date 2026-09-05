@@ -3,6 +3,7 @@ import type { Article, ArticleCard, ArticleDetail, ArticleStatus } from "@mwcnu/
 import type { ArticleCreateInput, ArticleUpdateInput } from "@mwcnu/validations";
 import { slugify } from "@mwcnu/utils";
 import { createServerSupabase } from "@/lib/supabase/server";
+import { createPublicSupabase } from "@/lib/supabase/public";
 import { MOCK_ARTICLES } from "./mock-data";
 
 const isSupabaseConfigured = () =>
@@ -77,7 +78,7 @@ export const listPublishedArticles = cache(
     }
 
     try {
-      const supabase = await createServerSupabase();
+      const supabase = createPublicSupabase();
       let query = supabase
         .from("articles")
         .select(CARD_COLUMNS)
@@ -144,7 +145,7 @@ export const getPublishedArticleBySlug = cache(
     }
 
     try {
-      const supabase = await createServerSupabase();
+      const supabase = createPublicSupabase();
       const { data, error } = await supabase
         .from("articles")
         .select("*")
@@ -180,7 +181,7 @@ export const getNextArticleBySlug = cache(async (slug: string): Promise<ArticleC
     const current = await getPublishedArticleBySlug(slug);
     if (!current?.category_id) return null;
 
-    const supabase = await createServerSupabase();
+    const supabase = createPublicSupabase();
     const { data, error } = await supabase
       .from("articles")
       .select(CARD_COLUMNS)
@@ -217,7 +218,7 @@ export const listRandomArticles = cache(
     }
 
     try {
-      const supabase = await createServerSupabase();
+      const supabase = createPublicSupabase();
       let query = supabase
         .from("articles")
         .select(CARD_COLUMNS)
