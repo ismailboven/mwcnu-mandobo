@@ -1,11 +1,13 @@
 // Script untuk ping API Supabase agar tidak otomatis ter-pause oleh Supabase (Free Tier)
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+const key =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  process.env.SUPABASE_PUBLISHABLE_KEY ||
+  process.env.SUPABASE_ANON_KEY;
 
 if (!url || !key) {
-  console.error(
-    "❌ NEXT_PUBLIC_SUPABASE_URL dan NEXT_PUBLIC_SUPABASE_ANON_KEY wajib diatur di .env.local"
-  );
+  console.error("❌ URL atau Publishable Key Supabase wajib diatur di environment variable.");
   process.exit(1);
 }
 

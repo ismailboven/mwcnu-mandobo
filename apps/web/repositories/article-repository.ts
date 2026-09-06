@@ -4,10 +4,8 @@ import type { ArticleCreateInput, ArticleUpdateInput } from "@mwcnu/validations"
 import { slugify } from "@mwcnu/utils";
 import { createServerSupabase } from "@/lib/supabase/server";
 import { createPublicSupabase } from "@/lib/supabase/public";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 import { MOCK_ARTICLES } from "./mock-data";
-
-const isSupabaseConfigured = () =>
-  Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 const CARD_COLUMNS =
   "id,title,slug,excerpt,cover_image_url,category_id,published_at,view_count,categories(id,name,slug)";

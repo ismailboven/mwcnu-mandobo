@@ -1,10 +1,8 @@
 import { cache } from "react";
 import type { EventCard } from "@mwcnu/types";
 import { createPublicSupabase } from "@/lib/supabase/public";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 import { MOCK_EVENTS } from "./mock-data";
-
-const isSupabaseConfigured = () =>
-  Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 export const listUpcomingEvents = cache(
   async (options?: { limit?: number }): Promise<EventCard[]> => {

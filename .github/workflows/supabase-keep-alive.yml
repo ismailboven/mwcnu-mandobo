@@ -15,20 +15,20 @@ jobs:
       - name: Ping Supabase Database & REST API
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY || secrets.SUPABASE_ANON_KEY }}
         run: |
-          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
-            echo "❌ Error: SUPABASE_URL atau SUPABASE_ANON_KEY belum diatur di GitHub Secrets."
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_KEY" ]; then
+            echo "❌ Error: SUPABASE_URL atau SUPABASE_PUBLISHABLE_KEY (atau SUPABASE_ANON_KEY) belum diatur di GitHub Secrets."
             echo "Silakan tambahkan di Settings -> Secrets and variables -> Actions"
             exit 1
           fi
 
           echo "📡 Pinging Supabase REST API ..."
           
-          # Ping tabel articles & categories untuk memicu aktivitas query database
+          # Ping tabel articles untuk memicu aktivitas query database
           RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
-            -H "apikey: $SUPABASE_ANON_KEY" \
-            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY" \
             "$SUPABASE_URL/rest/v1/articles?select=id&limit=1")
           
           HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d':' -f2)
