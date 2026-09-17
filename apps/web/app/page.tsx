@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, FileDown, Images, Landmark } from "lucide-react";
+import { ArrowRight, BookOpen, FileDown, Images, Landmark, Network, Newspaper } from "lucide-react";
 import { Badge, Button, Card, CardContent } from "@mwcnu/ui";
 import { ArticleCard } from "@/components/domain/article-card";
 import { Container } from "@/components/layout/container";
@@ -37,24 +37,39 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/10 via-background to-background">
+      <section className="border-border from-primary/10 via-background to-background relative overflow-hidden border-b bg-gradient-to-b">
         <Container className="grid items-center gap-10 py-20 md:grid-cols-2 md:py-28">
           <div>
             <Badge variant="secondary">Platform Digital Resmi</Badge>
-            <h1 className="mt-4 font-display text-4xl font-extrabold text-balance md:text-6xl">
-              Tradisi yang Hidup,{" "}
-              <span className="text-primary">Teknologi yang Bermakna</span>
+            <h1 className="font-display mt-4 text-4xl font-extrabold text-balance md:text-6xl">
+              Tradisi yang Hidup, <span className="text-primary">Teknologi yang Bermakna</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-muted-foreground text-pretty">
+            <p className="text-muted-foreground mt-5 max-w-xl text-lg text-pretty">
               {ORGANIZATION_FULL} — menyediakan berita, agenda, kajian, dan arsip organisasi secara
               transparan dan aksesibel.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link href="/berita">Baca Berita</Link>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button
+                asChild
+                size="lg"
+                className="gap-2 font-bold shadow-md transition-all hover:shadow-lg"
+              >
+                <Link href="/berita">
+                  <Newspaper className="size-4" />
+                  <span>Baca Berita</span>
+                  <ArrowRight className="size-4 opacity-70" />
+                </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/tentang/struktur">Lihat Struktur</Link>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-border/80 hover:border-primary/60 bg-card/70 font-semibold backdrop-blur"
+              >
+                <Link href="/tentang/struktur">
+                  <Network className="text-primary size-4" />
+                  <span>Lihat Struktur</span>
+                </Link>
               </Button>
             </div>
           </div>
@@ -63,8 +78,8 @@ export default async function HomePage() {
             {STATS.map((stat) => (
               <Card key={stat.label} className="bg-card/80 p-6 backdrop-blur">
                 <CardContent className="p-0">
-                  <p className="font-display text-3xl font-extrabold text-primary">{stat.value}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
+                  <p className="font-display text-primary text-3xl font-extrabold">{stat.value}</p>
+                  <p className="text-muted-foreground mt-1 text-sm">{stat.label}</p>
                 </CardContent>
               </Card>
             ))}
@@ -88,7 +103,7 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className="border-y border-border bg-muted/40 py-16 md:py-20">
+      <section className="border-border bg-muted/40 border-y py-16 md:py-20">
         <Container>
           <SectionHeader
             kicker="Organisasi"
@@ -98,13 +113,16 @@ export default async function HomePage() {
           />
           <div className="grid gap-6 md:grid-cols-3">
             {ORG_TEASERS.map((item) => (
-              <Card key={item.title} className="transition-all duration-base hover:-translate-y-0.5 hover:shadow-medium">
+              <Card
+                key={item.title}
+                className="duration-base hover:shadow-medium transition-all hover:-translate-y-0.5"
+              >
                 <CardContent className="p-6">
-                  <span className="grid size-12 place-items-center rounded-2xl bg-primary/10 text-primary">
+                  <span className="bg-primary/10 text-primary grid size-12 place-items-center rounded-2xl">
                     <item.icon className="size-6" />
                   </span>
-                  <h3 className="mt-4 font-display text-lg font-bold">{item.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                  <h3 className="font-display mt-4 text-lg font-bold">{item.title}</h3>
+                  <p className="text-muted-foreground mt-2 text-sm">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -115,11 +133,11 @@ export default async function HomePage() {
       <section className="py-16 md:py-20">
         <Container>
           <div className="grid gap-6 md:grid-cols-2">
-            <Card className="bg-gradient-to-br from-primary to-primary-hover text-primary-foreground">
+            <Card className="from-primary to-primary-hover text-primary-foreground bg-gradient-to-br">
               <CardContent className="p-8">
                 <BookOpen className="size-8" />
-                <h2 className="mt-4 font-display text-2xl font-bold">Kajian & Khutbah</h2>
-                <p className="mt-2 text-sm text-primary-foreground/80">
+                <h2 className="font-display mt-4 text-2xl font-bold">Kajian & Khutbah</h2>
+                <p className="text-primary-foreground/80 mt-2 text-sm">
                   Unduh materi kajian, khutbah Jumat, dan arsip dakwah dalam berbagai format.
                 </p>
                 <Button asChild variant="secondary" className="mt-6">
@@ -129,9 +147,9 @@ export default async function HomePage() {
             </Card>
             <Card>
               <CardContent className="p-8">
-                <FileDown className="size-8 text-primary" />
-                <h2 className="mt-4 font-display text-2xl font-bold">Unduhan & Arsip</h2>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <FileDown className="text-primary size-8" />
+                <h2 className="font-display mt-4 text-2xl font-bold">Unduhan & Arsip</h2>
+                <p className="text-muted-foreground mt-2 text-sm">
                   Akses SK, surat, notulen, dan dokumen resmi organisasi di Download Center.
                 </p>
                 <Button asChild variant="outline" className="mt-6">

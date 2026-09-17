@@ -1,8 +1,20 @@
-import type { ArticleCard, EventCard } from "@mwcnu/types";
+import type {
+  Announcement,
+  ArticleCard,
+  Document,
+  EventCard,
+  Figure,
+  Institution,
+  Leader,
+  Program,
+  ProgramItem,
+  Sermon,
+  TimelineEvent,
+} from "@mwcnu/types";
 
 /**
- * Data contoh agar aplikasi tetap berjalan sebelum Supabase dikonfigurasi.
- * ⚠️ Hapus setelah .env.local terisi & data asli masuk.
+ * Data contoh agar aplikasi tetap berjalan sebelum Supabase dikonfigurasi
+ * atau saat database offline (Graceful Fallback Mode).
  */
 export const MOCK_ARTICLES: ArticleCard[] = [
   {
@@ -35,7 +47,11 @@ export const MOCK_ARTICLES: ArticleCard[] = [
     excerpt: "Program regenerasi kader bekerja sama dengan LP Ma'arif dan IPNU-IPPNU...",
     cover_image_url: null,
     category_id: "00000000-0000-4000-8000-000000000012",
-    category: { id: "00000000-0000-4000-8000-000000000012", name: "Pendidikan", slug: "pendidikan" },
+    category: {
+      id: "00000000-0000-4000-8000-000000000012",
+      name: "Pendidikan",
+      slug: "pendidikan",
+    },
     published_at: "2026-06-30T00:00:00+09:00",
     view_count: 150,
   },
@@ -72,12 +88,12 @@ export const MOCK_EVENTS: EventCard[] = [
     status: "upcoming",
     starts_at: "2026-08-09T07:00:00+09:00",
     ends_at: "2026-08-09T09:00:00+09:00",
-    location: "Masjid Agung Mandobo",
+    location: "Masjid Agung Baiturrahman, Tanah Merah",
     cover_image_url: null,
   },
   {
     id: "00000000-0000-4000-8000-000000000022",
-    title: "Rapat Pleno Pengurus MWCNU",
+    title: "Rapat Pleno Pengurus MWCNU Periode 2026-2030",
     slug: "rapat-pleno-pengurus",
     event_type: "rapat",
     status: "upcoming",
@@ -99,7 +115,7 @@ export const MOCK_EVENTS: EventCard[] = [
   },
   {
     id: "00000000-0000-4000-8000-000000000024",
-    title: "Pelatihan MC & Khitobah untuk Remaja",
+    title: "Pelatihan MC & Khitobah untuk Kader Muda",
     slug: "pelatihan-mc-khitobah-remaja",
     event_type: "pelatihan",
     status: "upcoming",
@@ -107,5 +123,661 @@ export const MOCK_EVENTS: EventCard[] = [
     ends_at: "2026-09-06T16:00:00+09:00",
     location: "Aula LP Ma'arif Mandobo",
     cover_image_url: null,
+  },
+];
+
+export const MOCK_ANNOUNCEMENTS: Announcement[] = [
+  {
+    id: "ann-001",
+    title: "Pendaftaran Calon Pengurus Ranting & Anak Ranting Periode 2026-2030",
+    content:
+      "Dibuka kesempatan khidmah bagi kader NU di setiap ranting se-Distrik Mandobo. Berkas pendaftaran dan rekomendasi dapat diserahkan ke sekretariat MWCNU paling lambat akhir bulan ini.",
+    announcement_type: "himbauan",
+    is_pinned: true,
+    expires_at: "2026-12-31T23:59:59Z",
+    created_by: null,
+    created_at: "2026-08-01T08:00:00Z",
+    updated_at: "2026-08-01T08:00:00Z",
+  },
+  {
+    id: "ann-002",
+    title: "Jadwal Operasional Layanan Sekretariat & Konsultasi Syariah",
+    content:
+      "Sekretariat MWCNU Mandobo melayani administrasi persuratan dan jadwal konsultasi keagamaan setiap hari Senin hingga Sabtu pukul 08.30 - 15.30 WIT.",
+    announcement_type: "info",
+    is_pinned: true,
+    expires_at: null,
+    created_by: null,
+    created_at: "2026-07-20T08:00:00Z",
+    updated_at: "2026-07-20T08:00:00Z",
+  },
+  {
+    id: "ann-003",
+    title: "Himbauan Pelaksanaan Sholat Istisqo & Doa Bersama Musim Kemarau",
+    content:
+      "Menyikapi musim kemarau berkepanjangan di Boven Digoel, jajaran Syuriyah menghimbau seluruh masjid dan musholla naungan NU menyelenggarakan sholat Istisqo dan qunut nazilah.",
+    announcement_type: "peringatan",
+    is_pinned: false,
+    expires_at: "2026-11-30T23:59:59Z",
+    created_by: null,
+    created_at: "2026-07-15T08:00:00Z",
+    updated_at: "2026-07-15T08:00:00Z",
+  },
+];
+
+export const MOCK_DOCUMENTS: Document[] = [
+  {
+    id: "doc-001",
+    title: "Surat Keputusan (SK) Susunan Pengurus MWCNU Mandobo 2026-2030",
+    slug: "sk-susunan-pengurus-mwcnu-mandobo-2026-2030",
+    description:
+      "Salinan resmi Surat Keputusan PCNU Boven Digoel tentang pengesahan susunan pengurus MWCNU Mandobo masa khidmat 2026-2030.",
+    category: "sk",
+    visibility: "public",
+    document_number: "012/SK/PCNU-BVD/VIII/2026",
+    issued_date: "2026-01-15",
+    subject: "Pengesahan Pengurus",
+    file_url: "https://example.com/docs/sk-pengurus-2026.pdf",
+    file_size_bytes: 2450000,
+    mime_type: "application/pdf",
+    version: 1,
+    related_article_id: null,
+    related_event_id: null,
+    download_count: 142,
+    deleted_at: null,
+    created_at: "2026-01-16T08:00:00Z",
+    updated_at: "2026-01-16T08:00:00Z",
+  },
+  {
+    id: "doc-002",
+    title: "Panduan Manajemen Kemakmuran & Aset Masjid NU",
+    slug: "panduan-manajemen-kemakmuran-aset-masjid",
+    description:
+      "Pedoman tata kelola administrasi, ta'mir, dan perlindungan aset wakaf masjid naungan Lembaga Ta'mir Masjid.",
+    category: "panduan",
+    visibility: "public",
+    document_number: "004/PD/LTM-MWC/2026",
+    issued_date: "2026-02-10",
+    subject: "Pedoman Ta'mir",
+    file_url: "https://example.com/docs/panduan-masjid.pdf",
+    file_size_bytes: 3820000,
+    mime_type: "application/pdf",
+    version: 1,
+    related_article_id: null,
+    related_event_id: null,
+    download_count: 89,
+    deleted_at: null,
+    created_at: "2026-02-11T08:00:00Z",
+    updated_at: "2026-02-11T08:00:00Z",
+  },
+  {
+    id: "doc-003",
+    title: "Kumpulan Khutbah Jumat Pilihan Bahasa Indonesia & Arab",
+    slug: "kumpulan-khutbah-jumat-pilihan",
+    description:
+      "Materi khutbah tematik seputar ukhuwah wathaniyah, moderasi beragama, dan tasamuh bernafaskan Ahlussunnah wal Jama'ah.",
+    category: "khutbah",
+    visibility: "public",
+    document_number: "008/KH/LDNU/2026",
+    issued_date: "2026-03-01",
+    subject: "Materi Khutbah",
+    file_url: "https://example.com/docs/khutbah-jumat-mwc.pdf",
+    file_size_bytes: 1950000,
+    mime_type: "application/pdf",
+    version: 2,
+    related_article_id: null,
+    related_event_id: null,
+    download_count: 267,
+    deleted_at: null,
+    created_at: "2026-03-02T08:00:00Z",
+    updated_at: "2026-03-02T08:00:00Z",
+  },
+  {
+    id: "doc-004",
+    title: "Formulir Pendaftaran Kaderisasi & Anggota NU",
+    slug: "formulir-pendaftaran-kaderisasi-anggota-nu",
+    description: "Formulir registrasi keanggotaan dan pendaftaran kaderisasi tingkat distrik.",
+    category: "formulir",
+    visibility: "public",
+    document_number: "001/FRM/MWC/2026",
+    issued_date: "2026-01-05",
+    subject: "Formulir Anggota",
+    file_url: "https://example.com/docs/formulir-anggota.pdf",
+    file_size_bytes: 520000,
+    mime_type: "application/pdf",
+    version: 1,
+    related_article_id: null,
+    related_event_id: null,
+    download_count: 115,
+    deleted_at: null,
+    created_at: "2026-01-06T08:00:00Z",
+    updated_at: "2026-01-06T08:00:00Z",
+  },
+];
+
+export const MOCK_SERMONS: Sermon[] = [
+  {
+    id: "sermon-001",
+    title: "Menjaga Sanad Keilmuan & Tradisi Keagamaan di Tanah Papua",
+    slug: "menjaga-sanad-keilmuan-tradisi-tanah-papua",
+    summary:
+      "Ulasan mendalam mengenai pentingnya bersandar pada ulama muktabar dan menjaga kerukunan antar umat beragama.",
+    speaker: "KH. Ahmad Marzuqi, M.Pd.",
+    series: "Kajian Aswaja An-Nahdliyah",
+    cover_image_url:
+      "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80",
+    published_at: "2026-07-28T09:00:00Z",
+    view_count: 430,
+    deleted_at: null,
+    created_at: "2026-07-28T09:00:00Z",
+    updated_at: "2026-07-28T09:00:00Z",
+  },
+  {
+    id: "sermon-002",
+    title: "Filsafat Zakat & Keadilan Sosial Berbasis Jam'iyyah",
+    slug: "filsafat-zakat-keadilan-sosial",
+    summary:
+      "Bagaimana LazisNU menggerakkan ekonomi umat melalui transparansi dan ketepatan sasaran mustahiq.",
+    speaker: "Ustadz M. Ridwan, S.E.",
+    series: "Fiqih Muamalah & Kedermawanan",
+    cover_image_url:
+      "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80",
+    published_at: "2026-07-14T09:00:00Z",
+    view_count: 285,
+    deleted_at: null,
+    created_at: "2026-07-14T09:00:00Z",
+    updated_at: "2026-07-14T09:00:00Z",
+  },
+  {
+    id: "sermon-003",
+    title: "Pendidikan Karakter Anak Berlandaskan Akhlaqul Karimah",
+    slug: "pendidikan-karakter-anak-akhlaqul-karimah",
+    summary:
+      "Strategi keluarga nahdliyin dalam mendidik generasi penerus menghadapi era kecerdasan buatan.",
+    speaker: "Nyai Hj. Siti Rahmah",
+    series: "Keluarga Maslahah",
+    cover_image_url:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+    published_at: "2026-06-20T09:00:00Z",
+    view_count: 312,
+    deleted_at: null,
+    created_at: "2026-06-20T09:00:00Z",
+    updated_at: "2026-06-20T09:00:00Z",
+  },
+];
+
+export interface GalleryAlbumView {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  cover_url: string;
+  photo_count: number;
+  items: { id: string; url: string; alt: string; title: string }[];
+}
+
+export const MOCK_GALLERIES: GalleryAlbumView[] = [
+  {
+    id: "alb-001",
+    title: "Konferensi & Pelantikan Pengurus MWCNU Mandobo 2026-2030",
+    slug: "pelantikan-pengurus-mwcnu-2026",
+    description: "Dokumentasi prosesi bai'at dan pelantikan pengurus di Gedung Serbaguna Mandobo.",
+    cover_url:
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
+    photo_count: 8,
+    items: [
+      {
+        id: "img-01",
+        url: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+        alt: "Prosesi Pelantikan Pengurus",
+        title: "Bai'at Pengurus MWCNU Mandobo",
+      },
+      {
+        id: "img-02",
+        url: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=1200&q=80",
+        alt: "Sambutan Rois Syuriyah",
+        title: "Tausiyah dan Doa Bersama",
+      },
+    ],
+  },
+  {
+    id: "alb-002",
+    title: "Penyaluran Santunan Ramadhan & Beras Dhuafa",
+    slug: "santunan-ramadhan-dhuafa",
+    description: "Kegiatan bakti sosial dan pembagian sembako dari LazisNU untuk warga Mandobo.",
+    cover_url:
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80",
+    photo_count: 6,
+    items: [
+      {
+        id: "img-03",
+        url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+        alt: "Penyaluran Paket Santunan",
+        title: "Pemberian Sembako LazisNU",
+      },
+    ],
+  },
+  {
+    id: "alb-003",
+    title: "Peringatan Hari Santri Nasional & Kirab Merah Putih",
+    slug: "hari-santri-kirab-merah-putih",
+    description: "Apel Akbar ribuan santri dan kader badan otonom di Lapangan Tanah Merah.",
+    cover_url:
+      "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80",
+    photo_count: 12,
+    items: [
+      {
+        id: "img-04",
+        url: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=1200&q=80",
+        alt: "Kirab Hari Santri",
+        title: "Pawai Santri Mandobo",
+      },
+    ],
+  },
+];
+
+export interface LeaderCardView extends Leader {
+  position_title: string;
+  category: "Syuriyah" | "Tanfidziyah" | "Lembaga" | "Banom";
+}
+
+export const MOCK_LEADERS: LeaderCardView[] = [
+  {
+    id: "lead-001",
+    profile_id: null,
+    organization_id: "org-001",
+    position_id: "pos-001",
+    name: "KH. Syamsul Huda, Lc.",
+    term_start: "2026-01-01",
+    term_end: "2030-12-31",
+    is_active: true,
+    bio: "Pengasuh Pondok Pesantren di Boven Digoel, mendedikasikan hidup untuk bimbingan spiritual umat.",
+    photo_url: null,
+    phone: "+6281234567801",
+    email: "rois@mwcnumandobo.or.id",
+    sort_order: 1,
+    created_at: "",
+    updated_at: "",
+    position_title: "Rais Syuriyah",
+    category: "Syuriyah",
+  },
+  {
+    id: "lead-002",
+    profile_id: null,
+    organization_id: "org-001",
+    position_id: "pos-002",
+    name: "K.H. Nur Cholish",
+    term_start: "2026-01-01",
+    term_end: "2030-12-31",
+    is_active: true,
+    bio: "Wakil Rais Syuriyah, aktif dalam majelis fatwa dan pembinaan hukum Islam.",
+    photo_url: null,
+    phone: "+6281234567802",
+    email: "wakilrois@mwcnumandobo.or.id",
+    sort_order: 2,
+    created_at: "",
+    updated_at: "",
+    position_title: "Wakil Rais Syuriyah",
+    category: "Syuriyah",
+  },
+  {
+    id: "lead-003",
+    profile_id: null,
+    organization_id: "org-001",
+    position_id: "pos-003",
+    name: "H. Muhammad Nur, S.Ag.",
+    term_start: "2026-01-01",
+    term_end: "2030-12-31",
+    is_active: true,
+    bio: "Ketua Tanfidziyah MWCNU Mandobo periode 2026-2030, fokus memodernisasi tata kelola organisasi.",
+    photo_url: null,
+    phone: "+6281234567803",
+    email: "ketua@mwcnumandobo.or.id",
+    sort_order: 3,
+    created_at: "",
+    updated_at: "",
+    position_title: "Ketua Tanfidziyah",
+    category: "Tanfidziyah",
+  },
+  {
+    id: "lead-004",
+    profile_id: null,
+    organization_id: "org-001",
+    position_id: "pos-004",
+    name: "Ustadz Ahmad Zainuri, Lc.",
+    term_start: "2026-01-01",
+    term_end: "2030-12-31",
+    is_active: true,
+    bio: "Sekretaris MWCNU Mandobo, mengkoordinir operasional harian dan sistem arsip digital.",
+    photo_url: null,
+    phone: "+6281234567804",
+    email: "sekretaris@mwcnumandobo.or.id",
+    sort_order: 4,
+    created_at: "",
+    updated_at: "",
+    position_title: "Sekretaris",
+    category: "Tanfidziyah",
+  },
+  {
+    id: "lead-005",
+    profile_id: null,
+    organization_id: "org-001",
+    position_id: "pos-005",
+    name: "Muhammad Ridwan, S.E.",
+    term_start: "2026-01-01",
+    term_end: "2030-12-31",
+    is_active: true,
+    bio: "Bendahara MWCNU Mandobo, penanggung jawab transparansi akuntabilitas keuangan organisasi.",
+    photo_url: null,
+    phone: "+6281234567805",
+    email: "bendahara@mwcnumandobo.or.id",
+    sort_order: 5,
+    created_at: "",
+    updated_at: "",
+    position_title: "Bendahara",
+    category: "Tanfidziyah",
+  },
+];
+
+export const MOCK_INSTITUTIONS: Institution[] = [
+  {
+    id: "inst-01",
+    name: "Lembaga Dakwah Nahdlatul Ulama Mandobo",
+    slug: "ldnu-mandobo",
+    abbreviation: "LDNU",
+    description:
+      "Mengembangkan dakwah Ahlussunnah wal Jama'ah melalui mimbar, majelis taklim, dan digital.",
+    category: "lembaga",
+    logo_url: null,
+    website: null,
+    chairman: "Ustadz H. Mahfudz",
+    contact_email: "ldnu@mwcnumandobo.or.id",
+    sort_order: 1,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "inst-02",
+    name: "Lembaga Pendidikan Ma'arif NU Mandobo",
+    slug: "lp-marif-mandobo",
+    abbreviation: "LP Ma'arif",
+    description: "Membina madrasah, sekolah Islam, dan TPQ di wilayah Distrik Mandobo.",
+    category: "lembaga",
+    logo_url: null,
+    website: null,
+    chairman: "Drs. H. Mulyadi",
+    contact_email: "maarif@mwcnumandobo.or.id",
+    sort_order: 2,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "inst-03",
+    name: "LAZISNU Mandobo",
+    slug: "lazisnu-mandobo",
+    abbreviation: "LAZISNU",
+    description:
+      "Lembaga Amil Zakat, Infaq, dan Shadaqah untuk pengentasan kemiskinan dan kemandirian umat.",
+    category: "lembaga",
+    logo_url: null,
+    website: null,
+    chairman: "Ahmad Fauzi, S.Sos.",
+    contact_email: "lazisnu@mwcnumandobo.or.id",
+    sort_order: 3,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "inst-04",
+    name: "Gerakan Pemuda Ansor Mandobo",
+    slug: "gp-ansor-mandobo",
+    abbreviation: "GP Ansor",
+    description: "Kader muda garda terdepan penjaga ulama, NKRI, dan nilai-nilai kebangsaan.",
+    category: "banom",
+    logo_url: null,
+    website: null,
+    chairman: "Sahabat Hasan Basri",
+    contact_email: "ansor@mwcnumandobo.or.id",
+    sort_order: 4,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "inst-05",
+    name: "Muslimat NU Mandobo",
+    slug: "muslimat-mandobo",
+    abbreviation: "Muslimat NU",
+    description: "Wadah perempuan nahdliyin dalam dakwah sosial, kesehatan, dan keluarga maslahah.",
+    category: "banom",
+    logo_url: null,
+    website: null,
+    chairman: "Hj. Siti Rahmah",
+    contact_email: "muslimat@mwcnumandobo.or.id",
+    sort_order: 5,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "inst-06",
+    name: "Fatayat NU Mandobo",
+    slug: "fatayat-mandobo",
+    abbreviation: "Fatayat NU",
+    description:
+      "Pemberdayaan pemudi nahdliyin di bidang pendidikan, ekonomi kreatif, dan kepemimpinan.",
+    category: "banom",
+    logo_url: null,
+    website: null,
+    chairman: "Sahabat Nurul Hidayah, S.Pd.",
+    contact_email: "fatayat@mwcnumandobo.or.id",
+    sort_order: 6,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "inst-07",
+    name: "IPNU - IPPNU Mandobo",
+    slug: "ipnu-ippnu-mandobo",
+    abbreviation: "IPNU-IPPNU",
+    description:
+      "Ikatan Pelajar Nahdlatul Ulama & Pelajar Putri NU untuk kaderisasi generasi muda penerus.",
+    category: "banom",
+    logo_url: null,
+    website: null,
+    chairman: "Rekan Fajar Ramadhan",
+    contact_email: "ipnu@mwcnumandobo.or.id",
+    sort_order: 7,
+    created_at: "",
+    updated_at: "",
+  },
+];
+
+export interface ProgramWithItems extends Program {
+  items: ProgramItem[];
+}
+
+export const MOCK_PROGRAMS: ProgramWithItems[] = [
+  {
+    id: "prog-001",
+    title: "Penguatan Literasi & Digitalisasi Organisasi",
+    slug: "penguatan-literasi-digitalisasi-organisasi",
+    description:
+      "Pembangunan portal digital resmi, arsip daring, dan kanal publikasi multi-platform terpadu.",
+    field: "Informasi & Komunikasi",
+    period: "2026-2028",
+    status: "active",
+    sort_order: 1,
+    created_at: "",
+    updated_at: "",
+    items: [
+      {
+        id: "pi-01",
+        program_id: "prog-001",
+        title: "Peluncuran Portal Resmi Web & Database Terpusat",
+        description:
+          "Membangun sistem informasi berbasis web dengan performa tinggi & akses mobile-first.",
+        progress: 100,
+        status: "completed",
+        target_date: "2026-08-31",
+        sort_order: 1,
+      },
+      {
+        id: "pi-02",
+        program_id: "prog-001",
+        title: "Digitalisasi Arsip Surat & SK Pengurus Se-Distrik",
+        description: "Pengumpulan dan digitalisasi dokumen historis serta SK ranting.",
+        progress: 60,
+        status: "active",
+        target_date: "2026-11-30",
+        sort_order: 2,
+      },
+    ],
+  },
+  {
+    id: "prog-002",
+    title: "Kemandirian Ekonomi Jamaah & Koin LazisNU",
+    slug: "kemandirian-ekonomi-jamaah-koin-lazisnu",
+    description:
+      "Gerakan Koin NU di setiap ranting untuk mendukung dana abadi pendidikan dan santunan sosial.",
+    field: "Sosial & Ekonomi",
+    period: "2026-2030",
+    status: "active",
+    sort_order: 2,
+    created_at: "",
+    updated_at: "",
+    items: [
+      {
+        id: "pi-03",
+        program_id: "prog-002",
+        title: "Distribusi 500 Kotak Koin NU ke Rumah Jamaah",
+        description: "Penyaluran kotak koin untuk pengumpulan infaq harian jamaah.",
+        progress: 80,
+        status: "active",
+        target_date: "2026-10-15",
+        sort_order: 1,
+      },
+      {
+        id: "pi-04",
+        program_id: "prog-002",
+        title: "Beasiswa Pendidikan Santri Prasejahtera Mandobo",
+        description: "Bantuan SPP dan kitab bagi 30 santri berprestasi.",
+        progress: 50,
+        status: "active",
+        target_date: "2026-12-31",
+        sort_order: 2,
+      },
+    ],
+  },
+  {
+    id: "prog-003",
+    title: "Revitalisasi & Pembinaan Kaderisasi Berjenjang",
+    slug: "revitalisasi-pembinaan-kaderisasi",
+    description:
+      "Penyelenggaraan Pendidikan Kader Penggerak NU (PKPNU) dan Masa Kesetiaan Anggota (Makesta).",
+    field: "Kaderisasi",
+    period: "2026-2027",
+    status: "active",
+    sort_order: 3,
+    created_at: "",
+    updated_at: "",
+    items: [
+      {
+        id: "pi-05",
+        program_id: "prog-003",
+        title: "Pendidikan Kader Penggerak NU (PKPNU) Angkatan I",
+        description: "Kaderisasi intensif 3 hari bersama instruktur PWNU.",
+        progress: 30,
+        status: "active",
+        target_date: "2027-02-15",
+        sort_order: 1,
+      },
+    ],
+  },
+];
+
+export const MOCK_TIMELINE: TimelineEvent[] = [
+  {
+    id: "time-001",
+    year_start: 1985,
+    year_end: null,
+    title: "Awal Mula Masuknya Warga Nahdliyin di Tanah Merah",
+    description:
+      "Gelombang pendatang dan perintis dakwah dari Jawa dan Sulawesi mulai mengadakan pengajian tahlilan dan istighotsah rutin di Tanah Merah, Boven Digoel.",
+    media_id: null,
+    sort_order: 1,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "time-002",
+    year_start: 1998,
+    year_end: null,
+    title: "Pendirian Majelis Taklim & Musholla Pertama",
+    description:
+      "Pembangunan sarana ibadah pertama yang menjadi pusat berkumpulnya para sesepuh nahdliyin dan rintisan pendidikan Al-Qur'an anak-anak.",
+    media_id: null,
+    sort_order: 2,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "time-003",
+    year_start: 2008,
+    year_end: null,
+    title: "Pembentukan Struktur MWCNU Mandobo",
+    description:
+      "Peresmian status struktural MWCNU Mandobo di bawah naungan Cabang Boven Digoel untuk mengonsolidasi seluruh ranting dan banom.",
+    media_id: null,
+    sort_order: 3,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "time-004",
+    year_start: 2026,
+    year_end: null,
+    title: "Transformasi Digital & Visi Modern Nusantara",
+    description:
+      "Peluncuran platform digital resmi dan penegasan komitmen dakwah moderat di perbatasan timur Nusantara.",
+    media_id: null,
+    sort_order: 4,
+    created_at: "",
+    updated_at: "",
+  },
+];
+
+export const MOCK_FIGURES: Figure[] = [
+  {
+    id: "fig-001",
+    name: "KH. Syamsul Huda, Lc.",
+    slug: "kh-syamsul-huda",
+    title: "Rois Syuriyah",
+    category: "ulama",
+    birth_place: "Jember",
+    birth_year: 1968,
+    death_year: null,
+    bio: "Tokoh ulama perintis kajian kitab kuning dan penasehat keagamaan lintas etnis di Boven Digoel.",
+    photo_url: null,
+    quote:
+      "Rawatlah ukhuwah sebagaimana kita merawat iman, sebab persaudaraan adalah ladang subur tumbuhnya kebaikan.",
+    sort_order: 1,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "fig-002",
+    name: "H. Muhammad Nur, S.Ag.",
+    slug: "h-muhammad-nur",
+    title: "Ketua Tanfidziyah",
+    category: "aktivis",
+    birth_place: "Makassar",
+    birth_year: 1975,
+    death_year: null,
+    bio: "Pendidik dan tokoh penggerak kemasyarakatan yang aktif mengawal kerukunan sosial di Papua Selatan.",
+    photo_url: null,
+    quote:
+      "Teknologi adalah sarana, tujuan kita tetap satu: melayani umat dengan keikhlasan dan keteladanan.",
+    sort_order: 2,
+    created_at: "",
+    updated_at: "",
   },
 ];

@@ -197,16 +197,24 @@ const events = [
 
 const announcements = [
   {
-    title: "Pendaftaran Calon Pengurus Ranting Periode 2026-2030",
+    title: "Pendaftaran Calon Pengurus Ranting & Anak Ranting Periode 2026-2030",
     content:
-      "Pendaftaran dibuka hingga akhir bulan. Bagi yang berminat, hubungi sekretariat MWCNU.",
+      "Dibuka kesempatan khidmah bagi kader NU di setiap ranting se-Distrik Mandobo. Berkas pendaftaran dan rekomendasi dapat diserahkan ke sekretariat MWCNU.",
     announcement_type: "himbauan",
     is_pinned: true,
   },
   {
-    title: "Jadwal Operasional Kantor selama Ramadan",
-    content: "Kantor MWCNU Mandobo beroperasional pukul 08.00-15.00 selama bulan Ramadan.",
+    title: "Jadwal Layanan Sekretariat & Konsultasi Syariah",
+    content:
+      "Sekretariat MWCNU Mandobo beroperasi setiap Senin-Sabtu pukul 08.30-15.30 WIT untuk melayani persuratan dan bimbingan keagamaan.",
     announcement_type: "info",
+    is_pinned: true,
+  },
+  {
+    title: "Himbauan Pelaksanaan Sholat Istisqo & Doa Bersama Musim Kemarau",
+    content:
+      "Menghimbau seluruh masjid dan musholla naungan NU menyelenggarakan sholat Istisqo memohon berkah hujan dan keselamatan.",
+    announcement_type: "peringatan",
     is_pinned: false,
   },
 ];
@@ -216,43 +224,287 @@ const institutions = [
     name: "Lembaga Dakwah NU Mandobo",
     slug: "ldnu-mandobo",
     abbreviation: "LDNU",
+    description:
+      "Mengembangkan dakwah Ahlussunnah wal Jama'ah melalui mimbar, majelis taklim, dan digital.",
     category: "lembaga",
+    chairman: "Ustadz H. Mahfudz",
+    contact_email: "ldnu@mwcnumandobo.or.id",
+    sort_order: 1,
   },
   {
     name: "LP Ma'arif NU Mandobo",
     slug: "lp-marif-mandobo",
     abbreviation: "LP Ma'arif",
+    description: "Membina madrasah, sekolah Islam, dan TPQ di wilayah Distrik Mandobo.",
     category: "lembaga",
+    chairman: "Drs. H. Mulyadi",
+    contact_email: "maarif@mwcnumandobo.or.id",
+    sort_order: 2,
   },
   {
     name: "LazisNU Mandobo",
     slug: "lazisnu-mandobo",
     abbreviation: "LazisNU",
+    description:
+      "Lembaga Amil Zakat, Infaq, dan Shadaqah untuk pengentasan kemiskinan dan kemandirian umat.",
     category: "lembaga",
+    chairman: "Ahmad Fauzi, S.Sos.",
+    contact_email: "lazisnu@mwcnumandobo.or.id",
+    sort_order: 3,
+  },
+  {
+    name: "Gerakan Pemuda Ansor Mandobo",
+    slug: "gp-ansor-mandobo",
+    abbreviation: "GP Ansor",
+    description: "Kader muda garda terdepan penjaga ulama, NKRI, dan nilai-nilai kebangsaan.",
+    category: "banom",
+    chairman: "Sahabat Hasan Basri",
+    contact_email: "ansor@mwcnumandobo.or.id",
+    sort_order: 4,
   },
   {
     name: "Muslimat NU Mandobo",
     slug: "muslimat-mandobo",
     abbreviation: "Muslimat NU",
+    description: "Wadah perempuan nahdliyin dalam dakwah sosial, kesehatan, dan keluarga maslahah.",
     category: "banom",
+    chairman: "Hj. Siti Rahmah",
+    contact_email: "muslimat@mwcnumandobo.or.id",
+    sort_order: 5,
   },
   {
     name: "Fatayat NU Mandobo",
     slug: "fatayat-mandobo",
     abbreviation: "Fatayat NU",
+    description:
+      "Pemberdayaan pemudi nahdliyin di bidang pendidikan, ekonomi kreatif, dan kepemimpinan.",
     category: "banom",
-  },
-  {
-    name: "GP Ansor Mandobo",
-    slug: "gp-ansor-mandobo",
-    abbreviation: "GP Ansor",
-    category: "banom",
+    chairman: "Sahabat Nurul Hidayah, S.Pd.",
+    contact_email: "fatayat@mwcnumandobo.or.id",
+    sort_order: 6,
   },
   {
     name: "IPNU-IPPNU Mandobo",
     slug: "ipnu-ippnu-mandobo",
     abbreviation: "IPNU-IPPNU",
+    description:
+      "Ikatan Pelajar Nahdlatul Ulama & Pelajar Putri NU untuk kaderisasi generasi muda penerus.",
     category: "banom",
+    chairman: "Rekan Fajar Ramadhan",
+    contact_email: "ipnu@mwcnumandobo.or.id",
+    sort_order: 7,
+  },
+];
+
+const documents = [
+  {
+    title: "Surat Keputusan (SK) Susunan Pengurus MWCNU Mandobo 2026-2030",
+    slug: "sk-susunan-pengurus-mwcnu-mandobo-2026-2030",
+    description:
+      "Salinan resmi Surat Keputusan PCNU Boven Digoel tentang pengesahan susunan pengurus MWCNU Mandobo masa khidmat 2026-2030.",
+    category: "sk",
+    visibility: "public",
+    document_number: "012/SK/PCNU-BVD/VIII/2026",
+    issued_date: "2026-01-15",
+    subject: "Pengesahan Pengurus",
+    file_url: "https://example.com/docs/sk-pengurus-2026.pdf",
+    file_size_bytes: 2450000,
+    mime_type: "application/pdf",
+    version: 1,
+    download_count: 142,
+  },
+  {
+    title: "Panduan Manajemen Kemakmuran & Aset Masjid NU",
+    slug: "panduan-manajemen-kemakmuran-aset-masjid",
+    description:
+      "Pedoman tata kelola administrasi, ta'mir, dan perlindungan aset wakaf masjid naungan Lembaga Ta'mir Masjid.",
+    category: "panduan",
+    visibility: "public",
+    document_number: "004/PD/LTM-MWC/2026",
+    issued_date: "2026-02-10",
+    subject: "Pedoman Ta'mir",
+    file_url: "https://example.com/docs/panduan-masjid.pdf",
+    file_size_bytes: 3820000,
+    mime_type: "application/pdf",
+    version: 1,
+    download_count: 89,
+  },
+  {
+    title: "Kumpulan Khutbah Jumat Pilihan Bahasa Indonesia & Arab",
+    slug: "kumpulan-khutbah-jumat-pilihan",
+    description:
+      "Materi khutbah tematik seputar ukhuwah wathaniyah, moderasi beragama, dan tasamuh bernafaskan Ahlussunnah wal Jama'ah.",
+    category: "khutbah",
+    visibility: "public",
+    document_number: "008/KH/LDNU/2026",
+    issued_date: "2026-03-01",
+    subject: "Materi Khutbah",
+    file_url: "https://example.com/docs/khutbah-jumat-mwc.pdf",
+    file_size_bytes: 1950000,
+    mime_type: "application/pdf",
+    version: 2,
+    download_count: 267,
+  },
+  {
+    title: "Formulir Pendaftaran Kaderisasi & Anggota NU",
+    slug: "formulir-pendaftaran-kaderisasi-anggota-nu",
+    description: "Formulir registrasi keanggotaan dan pendaftaran kaderisasi tingkat distrik.",
+    category: "formulir",
+    visibility: "public",
+    document_number: "001/FRM/MWC/2026",
+    issued_date: "2026-01-05",
+    subject: "Formulir Anggota",
+    file_url: "https://example.com/docs/formulir-anggota.pdf",
+    file_size_bytes: 520000,
+    mime_type: "application/pdf",
+    version: 1,
+    download_count: 115,
+  },
+];
+
+const sermons = [
+  {
+    title: "Menjaga Sanad Keilmuan & Tradisi Keagamaan di Tanah Papua",
+    slug: "menjaga-sanad-keilmuan-tradisi-tanah-papua",
+    summary:
+      "Ulasan mendalam mengenai pentingnya bersandar pada ulama muktabar dan menjaga kerukunan antar umat beragama.",
+    speaker: "KH. Ahmad Marzuqi, M.Pd.",
+    series: "Kajian Aswaja An-Nahdliyah",
+    cover_image_url:
+      "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80",
+    published_at: daysAgo(10),
+    view_count: 430,
+  },
+  {
+    title: "Filsafat Zakat & Keadilan Sosial Berbasis Jam'iyyah",
+    slug: "filsafat-zakat-keadilan-sosial",
+    summary:
+      "Bagaimana LazisNU menggerakkan ekonomi umat melalui transparansi dan ketepatan sasaran mustahiq.",
+    speaker: "Ustadz M. Ridwan, S.E.",
+    series: "Fiqih Muamalah & Kedermawanan",
+    cover_image_url:
+      "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80",
+    published_at: daysAgo(20),
+    view_count: 285,
+  },
+  {
+    title: "Pendidikan Karakter Anak Berlandaskan Akhlaqul Karimah",
+    slug: "pendidikan-karakter-anak-akhlaqul-karimah",
+    summary:
+      "Strategi keluarga nahdliyin dalam mendidik generasi penerus menghadapi era kecerdasan buatan.",
+    speaker: "Nyai Hj. Siti Rahmah",
+    series: "Keluarga Maslahah",
+    cover_image_url:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+    published_at: daysAgo(35),
+    view_count: 312,
+  },
+];
+
+const albums = [
+  {
+    title: "Konferensi & Pelantikan Pengurus MWCNU Mandobo 2026-2030",
+    slug: "pelantikan-pengurus-mwcnu-2026",
+    description: "Dokumentasi prosesi bai'at dan pelantikan pengurus di Gedung Serbaguna Mandobo.",
+  },
+  {
+    title: "Penyaluran Santunan Ramadhan & Beras Dhuafa",
+    slug: "santunan-ramadhan-dhuafa",
+    description: "Kegiatan bakti sosial dan pembagian sembako dari LazisNU untuk warga Mandobo.",
+  },
+  {
+    title: "Peringatan Hari Santri Nasional & Kirab Merah Putih",
+    slug: "hari-santri-kirab-merah-putih",
+    description: "Apel Akbar ribuan santri dan kader badan otonom di Lapangan Tanah Merah.",
+  },
+];
+
+const timeline_events = [
+  {
+    year_start: 1985,
+    title: "Awal Mula Masuknya Warga Nahdliyin di Tanah Merah",
+    description:
+      "Gelombang pendatang dan perintis dakwah mulai mengadakan pengajian tahlilan dan istighotsah rutin di Tanah Merah, Boven Digoel.",
+    sort_order: 1,
+  },
+  {
+    year_start: 1998,
+    title: "Pendirian Majelis Taklim & Musholla Pertama",
+    description:
+      "Pembangunan sarana ibadah pertama yang menjadi pusat berkumpulnya para sesepuh nahdliyin.",
+    sort_order: 2,
+  },
+  {
+    year_start: 2008,
+    title: "Pembentukan Struktur MWCNU Mandobo",
+    description: "Peresmian status struktural MWCNU Mandobo di bawah naungan Cabang Boven Digoel.",
+    sort_order: 3,
+  },
+  {
+    year_start: 2026,
+    title: "Transformasi Digital & Visi Modern Nusantara",
+    description: "Peluncuran platform digital resmi dan penegasan komitmen dakwah moderat.",
+    sort_order: 4,
+  },
+];
+
+const figures = [
+  {
+    name: "KH. Syamsul Huda, Lc.",
+    slug: "kh-syamsul-huda",
+    title: "Rais Syuriyah",
+    category: "ulama",
+    birth_place: "Jember",
+    birth_year: 1968,
+    bio: "Tokoh ulama perintis kajian kitab kuning dan penasehat keagamaan lintas etnis di Boven Digoel.",
+    quote:
+      "Rawatlah ukhuwah sebagaimana kita merawat iman, sebab persaudaraan adalah ladang subur tumbuhnya kebaikan.",
+    sort_order: 1,
+  },
+  {
+    name: "H. Muhammad Nur, S.Ag.",
+    slug: "h-muhammad-nur",
+    title: "Ketua Tanfidziyah",
+    category: "aktivis",
+    birth_place: "Makassar",
+    birth_year: 1975,
+    bio: "Pendidik dan tokoh penggerak kemasyarakatan yang aktif mengawal kerukunan sosial di Papua Selatan.",
+    quote:
+      "Teknologi adalah sarana, tujuan kita tetap satu: melayani umat dengan keikhlasan dan keteladanan.",
+    sort_order: 2,
+  },
+];
+
+const programs = [
+  {
+    title: "Penguatan Literasi & Digitalisasi Organisasi",
+    slug: "penguatan-literasi-digitalisasi-organisasi",
+    description:
+      "Pembangunan portal digital resmi, arsip daring, dan kanal publikasi multi-platform terpadu.",
+    field: "Informasi & Komunikasi",
+    period: "2026-2028",
+    status: "active",
+    sort_order: 1,
+  },
+  {
+    title: "Kemandirian Ekonomi Jamaah & Koin LazisNU",
+    slug: "kemandirian-ekonomi-jamaah-koin-lazisnu",
+    description:
+      "Gerakan Koin NU di setiap ranting untuk mendukung dana abadi pendidikan dan santunan sosial.",
+    field: "Sosial & Ekonomi",
+    period: "2026-2030",
+    status: "active",
+    sort_order: 2,
+  },
+  {
+    title: "Revitalisasi & Pembinaan Kaderisasi Berjenjang",
+    slug: "revitalisasi-pembinaan-kaderisasi",
+    description:
+      "Penyelenggaraan Pendidikan Kader Penggerak NU (PKPNU) dan Masa Kesetiaan Anggota (Makesta).",
+    field: "Kaderisasi",
+    period: "2026-2027",
+    status: "active",
+    sort_order: 3,
   },
 ];
 
@@ -276,7 +528,7 @@ const banners = [
 ];
 
 async function upsert(table, rows, onConflict) {
-  if (rows.length === 0) return;
+  if (!rows || rows.length === 0) return;
   const { error } = await supabase.from(table).upsert(rows, { onConflict });
   if (error) {
     console.error(`Gagal upsert ${table}:`, error.message);
@@ -287,7 +539,7 @@ async function upsert(table, rows, onConflict) {
 }
 
 async function replace(table, rows) {
-  if (rows.length === 0) return;
+  if (!rows || rows.length === 0) return;
   const { error: delError } = await supabase
     .from(table)
     .delete()
@@ -312,11 +564,19 @@ async function getCategoryId(slug) {
 }
 
 async function main() {
+  console.log("🚀 Memulai proses seeding dummy data lengkap...");
+
   await upsert("categories", categories, "slug");
   await upsert("tags", tags, "slug");
   await replace("announcements", announcements);
   await upsert("institutions", institutions, "slug");
   await replace("banners", banners);
+  await upsert("documents", documents, "slug");
+  await upsert("sermons", sermons, "slug");
+  await upsert("albums", albums, "slug");
+  await replace("timeline_events", timeline_events);
+  await upsert("figures", figures, "slug");
+  await upsert("programs", programs, "slug");
 
   const withCategory = [];
   for (const article of articles) {
@@ -333,15 +593,17 @@ async function main() {
     .select("id")
     .eq("slug", "mwcnu-mandobo")
     .single();
+
   if (org) {
     await upsert(
       "positions",
       [
-        { organization_id: org.id, title: "Ketua", sort_order: 1 },
-        { organization_id: org.id, title: "Wakil Ketua I", sort_order: 2 },
-        { organization_id: org.id, title: "Wakil Ketua II", sort_order: 3 },
-        { organization_id: org.id, title: "Sekretaris", sort_order: 4 },
-        { organization_id: org.id, title: "Bendahara", sort_order: 5 },
+        { organization_id: org.id, title: "Rais Syuriyah", sort_order: 1 },
+        { organization_id: org.id, title: "Wakil Rais Syuriyah", sort_order: 2 },
+        { organization_id: org.id, title: "Ketua Tanfidziyah", sort_order: 3 },
+        { organization_id: org.id, title: "Wakil Ketua Tanfidziyah", sort_order: 4 },
+        { organization_id: org.id, title: "Sekretaris", sort_order: 5 },
+        { organization_id: org.id, title: "Bendahara", sort_order: 6 },
       ],
       "organization_id,title"
     );
@@ -356,29 +618,32 @@ async function main() {
     await replace("leaders", [
       {
         organization_id: org.id,
-        position_id: posByTitle["Ketua"],
-        name: "H. Muhammad Nur, S.Ag.",
+        position_id: posByTitle["Rais Syuriyah"],
+        name: "KH. Syamsul Huda, Lc.",
         term_start: "2026-01-01",
         term_end: "2030-12-31",
         is_active: true,
+        bio: "Pengasuh Pondok Pesantren di Boven Digoel, mendedikasikan hidup untuk bimbingan spiritual umat.",
         sort_order: 1,
       },
       {
         organization_id: org.id,
-        position_id: posByTitle["Wakil Ketua I"],
-        name: "H. Abdul Karim, S.Pd.I.",
+        position_id: posByTitle["Wakil Rais Syuriyah"],
+        name: "K.H. Nur Cholish",
         term_start: "2026-01-01",
         term_end: "2030-12-31",
         is_active: true,
+        bio: "Wakil Rais Syuriyah, aktif dalam majelis fatwa dan pembinaan hukum Islam.",
         sort_order: 2,
       },
       {
         organization_id: org.id,
-        position_id: posByTitle["Wakil Ketua II"],
-        name: "Hj. Siti Rahmah",
+        position_id: posByTitle["Ketua Tanfidziyah"],
+        name: "H. Muhammad Nur, S.Ag.",
         term_start: "2026-01-01",
         term_end: "2030-12-31",
         is_active: true,
+        bio: "Ketua Tanfidziyah MWCNU Mandobo periode 2026-2030, fokus memodernisasi tata kelola organisasi.",
         sort_order: 3,
       },
       {
@@ -388,6 +653,7 @@ async function main() {
         term_start: "2026-01-01",
         term_end: "2030-12-31",
         is_active: true,
+        bio: "Sekretaris MWCNU Mandobo, mengkoordinir operasional harian dan sistem arsip digital.",
         sort_order: 4,
       },
       {
@@ -397,6 +663,7 @@ async function main() {
         term_start: "2026-01-01",
         term_end: "2030-12-31",
         is_active: true,
+        bio: "Bendahara MWCNU Mandobo, penanggung jawab transparansi akuntabilitas keuangan organisasi.",
         sort_order: 5,
       },
     ]);
@@ -404,10 +671,46 @@ async function main() {
     console.warn("Organisasi 'mwcnu-mandobo' tidak ditemukan, leaders dilewati.");
   }
 
+  // Program items seeding
+  const { data: progList } = await supabase.from("programs").select("id,slug");
+  if (progList && progList.length > 0) {
+    const progMap = Object.fromEntries(progList.map((p) => [p.slug, p.id]));
+    const programItems = [];
+
+    if (progMap["penguatan-literasi-digitalisasi-organisasi"]) {
+      programItems.push({
+        program_id: progMap["penguatan-literasi-digitalisasi-organisasi"],
+        title: "Peluncuran Portal Resmi Web & Database Terpusat",
+        description:
+          "Membangun sistem informasi berbasis web dengan performa tinggi & akses mobile-first.",
+        progress: 100,
+        status: "completed",
+        target_date: "2026-08-31",
+        sort_order: 1,
+      });
+    }
+
+    if (progMap["kemandirian-ekonomi-jamaah-koin-lazisnu"]) {
+      programItems.push({
+        program_id: progMap["kemandirian-ekonomi-jamaah-koin-lazisnu"],
+        title: "Distribusi 500 Kotak Koin NU ke Rumah Jamaah",
+        description: "Penyaluran kotak koin untuk pengumpulan infaq harian jamaah.",
+        progress: 80,
+        status: "active",
+        target_date: "2026-10-15",
+        sort_order: 1,
+      });
+    }
+
+    if (programItems.length > 0) {
+      await replace("program_items", programItems);
+    }
+  }
+
   if (process.exitCode) {
-    console.error("\nAda kegagalan saat seeding.");
+    console.error("\n❌ Ada kegagalan saat seeding.");
   } else {
-    console.log("\nSeeding selesai tanpa error.");
+    console.log("\n✅ Seeding data dummy lengkap selesai tanpa error!");
   }
 }
 
