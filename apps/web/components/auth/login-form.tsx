@@ -8,9 +8,23 @@ import { Button, Input, Label } from "@mwcnu/ui";
 import { LoginSchema, type LoginInput } from "@mwcnu/validations";
 import { createBrowserSupabase } from "@/lib/supabase/client";
 
-export function LoginForm({ next }: { next: string | undefined }) {
+interface LoginFormProps {
+  next: string | undefined;
+  initialError?: string | undefined;
+}
+
+const ERROR_MESSAGES: Record<string, string> = {
+  no_role:
+    "Akun Anda berhasil masuk, namun belum memiliki hak akses (role) pengurus di database. Silakan jalankan query penetapan role super_admin di Supabase.",
+  unauthorized: "Sesi Anda telah berakhir. Silakan masuk kembali.",
+  forbidden: "Anda tidak memiliki izin untuk mengakses halaman ini.",
+};
+
+export function LoginForm({ next, initialError }: LoginFormProps) {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(
+    initialError ? (ERROR_MESSAGES[initialError] ?? "Gagal memverifikasi akses.") : null
+  );
   const [submitting, setSubmitting] = useState(false);
 
   const {
@@ -26,17 +40,26 @@ export function LoginForm({ next }: { next: string | undefined }) {
     setSubmitting(true);
     try {
       const supabase = createBrowserSupabase();
-      const { error: authError } = await supabase.auth.signInWithPassword(values);
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: values.email.trim(),
+        password: values.password,
+      });
 
       if (authError) {
-        setError(authError.message);
+        if (authError.message === "Invalid login credentials") {
+          setError("Email atau kata sandi salah. Periksa kembali data login Anda.");
+        } else if (authError.message.includes("Email not confirmed")) {
+          setError("Email belum dikonfirmasi di Supabase Auth.");
+        } else {
+          setError(authError.message);
+        }
         return;
       }
 
       router.push(next ?? "/admin");
       router.refresh();
     } catch {
-      setError("Supabase belum dikonfigurasi. Periksa file .env.local terlebih dahulu.");
+      setError("Gagal terhubung ke Supabase. Periksa konfigurasi kredensial environment.");
     } finally {
       setSubmitting(false);
     }
@@ -54,7 +77,7 @@ export function LoginForm({ next }: { next: string | undefined }) {
           aria-invalid={Boolean(errors.email)}
           {...register("email")}
         />
-        {errors.email ? <p className="text-sm text-destructive">{errors.email.message}</p> : null}
+        {errors.email ? <p className="text-destructive text-xs">{errors.email.message}</p> : null}
       </div>
 
       <div className="space-y-2">
@@ -66,15 +89,19 @@ export function LoginForm({ next }: { next: string | undefined }) {
           aria-invalid={Boolean(errors.password)}
           {...register("password")}
         />
-        {errors.password ? <p className="text-sm text-destructive">{errors.password.message}</p> : null}
+        {errors.password ? (
+          <p className="text-destructive text-xs">{errors.password.message}</p>
+        ) : null}
       </div>
 
       {error ? (
-        <p className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">{error}</p>
+        <div className="bg-destructive/10 text-destructive border-destructive/20 rounded-lg border p-3 text-xs leading-relaxed">
+          {error}
+        </div>
       ) : null}
 
       <Button type="submit" className="w-full" disabled={submitting}>
-        {submitting ? "Masuk..." : "Masuk"}
+        {submitting ? "Memproses..." : "Masuk"}
       </Button>
     </form>
   );

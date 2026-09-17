@@ -28,8 +28,13 @@ export default async function AdminLayout({ children }: { children: ReactNode })
       level: result.level,
     };
   } catch (error) {
-    if (error instanceof AuthError && error.code === "UNAUTHORIZED") {
-      redirect("/masuk?next=/admin");
+    if (error instanceof AuthError) {
+      if (error.code === "UNAUTHORIZED") {
+        redirect("/masuk?next=/admin");
+      }
+      if (error.code === "FORBIDDEN") {
+        redirect("/masuk?error=no_role");
+      }
     }
     session = undefined;
   }

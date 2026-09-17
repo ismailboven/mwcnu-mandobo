@@ -59,21 +59,41 @@ export async function getUserRole(supabase: SupabaseClient<Database>): Promise<{
 
   if (!user) return { role: null, level: 0 };
 
-  const { data } = await supabase
-    .from("user_roles")
-    .select("roles(name, level)")
-    .eq("user_id", user.id);
+  try {
+    const { data, error } = await supabase
+      .from("user_roles")
+      .select("roles(name, level)")
+      .eq("user_id", user.id);
 
-  const candidates = (
-    (data ?? []) as unknown as { roles: { name: RoleName; level: number } | null }[]
-  )
-    .map((row) => row.roles)
-    .filter((role): role is { name: RoleName; level: number } => Boolean(role));
+    if (!error && data && data.length > 0) {
+      const candidates = (data as unknown as { roles: { name: RoleName; level: number } | null }[])
+        .map((row) => row.roles)
+        .filter((role): role is { name: RoleName; level: number } => Boolean(role));
 
-  if (candidates.length === 0) return { role: null, level: 0 };
+      if (candidates.length > 0) {
+        const highest = candidates.sort((a, b) => b.level - a.level)[0]!;
+        return { role: highest.name, level: highest.level };
+      }
+    }
+  } catch {
+    // Lanjut ke fallback RPC
+  }
 
-  const highest = candidates.sort((a, b) => b.level - a.level)[0]!;
-  return { role: highest.name, level: highest.level };
+  // Fallback 1: via Security Definer RPC get_user_role_level()
+  try {
+    const { data: rpcData } = await (
+      supabase.rpc as unknown as (fn: string) => Promise<{ data: unknown }>
+    )("get_user_role_level");
+    const numLevel = Number(rpcData);
+    if (numLevel >= 4) return { role: "super_admin", level: 4 };
+    if (numLevel === 3) return { role: "admin", level: 3 };
+    if (numLevel === 2) return { role: "editor", level: 2 };
+    if (numLevel === 1) return { role: "viewer", level: 1 };
+  } catch {
+    // Abaikan jika RPC gagal
+  }
+
+  return { role: null, level: 0 };
 }
 
 /**

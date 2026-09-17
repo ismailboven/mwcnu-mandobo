@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 export default async function MasukPage({
   searchParams,
 }: {
-  searchParams: Promise<{ next?: string }>;
+  searchParams: Promise<{ next?: string; error?: string }>;
 }) {
-  const { next } = await searchParams;
+  const { next, error } = await searchParams;
 
   return (
     <Container className="flex min-h-160 items-center justify-center py-16">
@@ -23,7 +23,7 @@ export default async function MasukPage({
           <CardDescription>Silakan masuk untuk mengelola konten MWCNU Mandobo.</CardDescription>
         </CardHeader>
         <CardContent>
-          <LoginForm next={next} />
+          <LoginForm next={next} initialError={error} />
         </CardContent>
       </Card>
     </Container>
