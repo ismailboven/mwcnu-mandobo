@@ -20,11 +20,11 @@ SET description = EXCLUDED.description, level = EXCLUDED.level;
 -- 2. KATEGORI BERITA
 INSERT INTO public.categories (id, name, slug, is_active)
 VALUES
-  ('c0000000-0000-0000-0000-000000000001', 'Berita', 'berita', true),
-  ('c0000000-0000-0000-0000-000000000002', 'Kegiatan', 'kegiatan', true),
-  ('c0000000-0000-0000-0000-000000000003', 'Kajian & Dakwah', 'kajian-dakwah', true),
-  ('c0000000-0000-0000-0000-000000000004', 'Sosial', 'sosial', true),
-  ('c0000000-0000-0000-0000-000000000005', 'Pendidikan', 'pendidikan', true)
+  ('00000000-0000-0000-0005-000000000001', 'Berita', 'berita', true),
+  ('00000000-0000-0000-0005-000000000002', 'Kegiatan', 'kegiatan', true),
+  ('00000000-0000-0000-0005-000000000003', 'Kajian & Dakwah', 'kajian-dakwah', true),
+  ('00000000-0000-0000-0005-000000000004', 'Sosial', 'sosial', true),
+  ('00000000-0000-0000-0005-000000000005', 'Pendidikan', 'pendidikan', true)
 ON CONFLICT (slug) DO UPDATE 
 SET name = EXCLUDED.name, is_active = EXCLUDED.is_active;
 
@@ -43,9 +43,9 @@ ON CONFLICT (slug) DO NOTHING;
 -- 4. PENGUMUMAN RESMI
 INSERT INTO public.announcements (id, title, content, announcement_type, is_pinned, expires_at)
 VALUES
-  ('a0000000-0000-0000-0000-000000000001', 'Pendaftaran Calon Pengurus Ranting & Anak Ranting Periode 2026-2030', 'Dibuka kesempatan khidmah bagi seluruh kader Nahdlatul Ulama di setiap ranting se-Distrik Mandobo. Berkas pendaftaran dan surat rekomendasi dapat diserahkan langsung ke sekretariat MWCNU paling lambat akhir bulan ini.', 'himbauan', true, '2026-12-31 23:59:59+00'),
-  ('a0000000-0000-0000-0000-000000000002', 'Jadwal Layanan Sekretariat & Konsultasi Syariah', 'Sekretariat MWCNU Mandobo beroperasi setiap Senin hingga Sabtu pukul 08.30 - 15.30 WIT untuk melayani administrasi persuratan, rekomendasi organisasi, dan bimbingan keagamaan.', 'info', true, NULL),
-  ('a0000000-0000-0000-0000-000000000003', 'Himbauan Pelaksanaan Sholat Istisqo & Doa Bersama Musim Kemarau', 'Menyikapi musim kemarau di Kabupaten Boven Digoel, jajaran Syuriyah menghimbau seluruh masjid dan musholla naungan NU menyelenggarakan sholat Istisqo memohon berkah hujan dan keselamatan.', 'peringatan', false, '2026-11-30 23:59:59+00')
+  ('00000000-0000-0000-0007-000000000001', 'Pendaftaran Calon Pengurus Ranting & Anak Ranting Periode 2026-2030', 'Dibuka kesempatan khidmah bagi seluruh kader Nahdlatul Ulama di setiap ranting se-Distrik Mandobo. Berkas pendaftaran dan surat rekomendasi dapat diserahkan langsung ke sekretariat MWCNU paling lambat akhir bulan ini.', 'himbauan', true, '2026-12-31 23:59:59+00'),
+  ('00000000-0000-0000-0007-000000000002', 'Jadwal Layanan Sekretariat & Konsultasi Syariah', 'Sekretariat MWCNU Mandobo beroperasi setiap Senin hingga Sabtu pukul 08.30 - 15.30 WIT untuk melayani administrasi persuratan, rekomendasi organisasi, dan bimbingan keagamaan.', 'info', true, NULL),
+  ('00000000-0000-0000-0007-000000000003', 'Himbauan Pelaksanaan Sholat Istisqo & Doa Bersama Musim Kemarau', 'Menyikapi musim kemarau di Kabupaten Boven Digoel, jajaran Syuriyah menghimbau seluruh masjid dan musholla naungan NU menyelenggarakan sholat Istisqo memohon berkah hujan dan keselamatan.', 'peringatan', false, '2026-11-30 23:59:59+00')
 ON CONFLICT (id) DO UPDATE
 SET title = EXCLUDED.title, content = EXCLUDED.content, announcement_type = EXCLUDED.announcement_type, is_pinned = EXCLUDED.is_pinned;
 
@@ -70,20 +70,20 @@ ON CONFLICT (slug) DO NOTHING;
 
 INSERT INTO public.positions (id, organization_id, title, sort_order)
 VALUES
-  ('p0000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Rais Syuriyah', 1),
-  ('p0000000-0000-0000-0000-000000000002', '00000000-0000-0000-0000-000000000001', 'Wakil Rais Syuriyah', 2),
-  ('p0000000-0000-0000-0000-000000000003', '00000000-0000-0000-0000-000000000001', 'Ketua Tanfidziyah', 3),
-  ('p0000000-0000-0000-0000-000000000004', '00000000-0000-0000-0000-000000000001', 'Sekretaris', 4),
-  ('p0000000-0000-0000-0000-000000000005', '00000000-0000-0000-0000-000000000001', 'Bendahara', 5)
+  ('00000000-0000-0000-0001-000000000001', '00000000-0000-0000-0000-000000000001', 'Rais Syuriyah', 1),
+  ('00000000-0000-0000-0001-000000000002', '00000000-0000-0000-0000-000000000001', 'Wakil Rais Syuriyah', 2),
+  ('00000000-0000-0000-0001-000000000003', '00000000-0000-0000-0000-000000000001', 'Ketua Tanfidziyah', 3),
+  ('00000000-0000-0000-0001-000000000004', '00000000-0000-0000-0000-000000000001', 'Sekretaris', 4),
+  ('00000000-0000-0000-0001-000000000005', '00000000-0000-0000-0000-000000000001', 'Bendahara', 5)
 ON CONFLICT (organization_id, title) DO NOTHING;
 
 INSERT INTO public.leaders (id, organization_id, position_id, name, term_start, term_end, is_active, bio, phone, email, sort_order)
 VALUES
-  ('l0000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'p0000000-0000-0000-0000-000000000001', 'KH. Syamsul Huda, Lc.', '2026-01-01', '2030-12-31', true, 'Pengasuh Pondok Pesantren di Boven Digoel, mendedikasikan hidup untuk bimbingan spiritual umat.', '+6281234567801', 'rois@mwcnumandobo.or.id', 1),
-  ('l0000000-0000-0000-0000-000000000002', '00000000-0000-0000-0000-000000000001', 'p0000000-0000-0000-0000-000000000002', 'K.H. Nur Cholish', '2026-01-01', '2030-12-31', true, 'Wakil Rais Syuriyah, aktif dalam majelis fatwa dan pembinaan hukum Islam.', '+6281234567802', 'wakilrois@mwcnumandobo.or.id', 2),
-  ('l0000000-0000-0000-0000-000000000003', '00000000-0000-0000-0000-000000000001', 'p0000000-0000-0000-0000-000000000003', 'H. Muhammad Nur, S.Ag.', '2026-01-01', '2030-12-31', true, 'Ketua Tanfidziyah MWCNU Mandobo periode 2026-2030, fokus memodernisasi tata kelola organisasi.', '+6281234567803', 'ketua@mwcnumandobo.or.id', 3),
-  ('l0000000-0000-0000-0000-000000000004', '00000000-0000-0000-0000-000000000001', 'p0000000-0000-0000-0000-000000000004', 'Ustadz Ahmad Zainuri, Lc.', '2026-01-01', '2030-12-31', true, 'Sekretaris MWCNU Mandobo, mengkoordinir operasional harian dan sistem arsip digital.', '+6281234567804', 'sekretaris@mwcnumandobo.or.id', 4),
-  ('l0000000-0000-0000-0000-000000000005', '00000000-0000-0000-0000-000000000001', 'p0000000-0000-0000-0000-000000000005', 'Muhammad Ridwan, S.E.', '2026-01-01', '2030-12-31', true, 'Bendahara MWCNU Mandobo, penanggung jawab transparansi akuntabilitas keuangan organisasi.', '+6281234567805', 'bendahara@mwcnumandobo.or.id', 5)
+  ('00000000-0000-0000-0002-000000000001', '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0001-000000000001', 'KH. Syamsul Huda, Lc.', '2026-01-01', '2030-12-31', true, 'Pengasuh Pondok Pesantren di Boven Digoel, mendedikasikan hidup untuk bimbingan spiritual umat.', '+6281234567801', 'rois@mwcnumandobo.or.id', 1),
+  ('00000000-0000-0000-0002-000000000002', '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0001-000000000002', 'K.H. Nur Cholish', '2026-01-01', '2030-12-31', true, 'Wakil Rais Syuriyah, aktif dalam majelis fatwa dan pembinaan hukum Islam.', '+6281234567802', 'wakilrois@mwcnumandobo.or.id', 2),
+  ('00000000-0000-0000-0002-000000000003', '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0001-000000000003', 'H. Muhammad Nur, S.Ag.', '2026-01-01', '2030-12-31', true, 'Ketua Tanfidziyah MWCNU Mandobo periode 2026-2030, fokus memodernisasi tata kelola organisasi.', '+6281234567803', 'ketua@mwcnumandobo.or.id', 3),
+  ('00000000-0000-0000-0002-000000000004', '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0001-000000000004', 'Ustadz Ahmad Zainuri, Lc.', '2026-01-01', '2030-12-31', true, 'Sekretaris MWCNU Mandobo, mengkoordinir operasional harian dan sistem arsip digital.', '+6281234567804', 'sekretaris@mwcnumandobo.or.id', 4),
+  ('00000000-0000-0000-0002-000000000005', '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0001-000000000005', 'Muhammad Ridwan, S.E.', '2026-01-01', '2030-12-31', true, 'Bendahara MWCNU Mandobo, penanggung jawab transparansi akuntabilitas keuangan organisasi.', '+6281234567805', 'bendahara@mwcnumandobo.or.id', 5)
 ON CONFLICT (id) DO UPDATE
 SET name = EXCLUDED.name, bio = EXCLUDED.bio, phone = EXCLUDED.phone, email = EXCLUDED.email;
 
@@ -91,12 +91,12 @@ SET name = EXCLUDED.name, bio = EXCLUDED.bio, phone = EXCLUDED.phone, email = EX
 INSERT INTO public.articles (id, title, slug, excerpt, content, category_id, status, is_featured, is_pinned, pinned_order, published_at, view_count)
 VALUES
   (
-    'e0000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0006-000000000001',
     'MWCNU Mandobo Gelar Rapat Pleno Perdana Periode 2026-2030',
     'rapat-pleno-perdana-2026-2030',
     'Pengurus MWCNU Mandobo menggelar rapat pleno perdana untuk menyusun program kerja lima tahun ke depan.',
     '<p>Tanah Merah, Boven Digoel — Pengurus Majelis Wakil Cabang Nahdlatul Ulama (MWCNU) Mandobo periode 2026-2030 menggelar rapat pleno perdana di Kantor MWCNU Mandobo.</p><p>Rapat ini membahas penyusunan program kerja, pembagian tupoksi, serta penguatan koordinasi dengan lembaga dan banom di lingkungan NU Mandobo.</p><p>Ketua MWCNU Mandobo menegaskan pentingnya kerja sama dan amanah dalam melayani umat di Distrik Mandobo dan sekitarnya.</p>',
-    'c0000000-0000-0000-0000-000000000002',
+    '00000000-0000-0000-0005-000000000002',
     'published',
     true,
     true,
@@ -105,12 +105,12 @@ VALUES
     214
   ),
   (
-    'e0000000-0000-0000-0000-000000000002',
+    '00000000-0000-0000-0006-000000000002',
     'Kajian Rutin Ahad Pagi: Menata Hati di Bulan Ramadan',
     'kajian-ahad-pagi-menata-hati-ramadan',
     'Kajian rutin Ahad pagi bersama Ustadz Ahmad Zainuri membahas tazkiyatun nafs di bulan Ramadan.',
     '<p>Kajian rutin Ahad pagi kembali digelar di Masjid Baiturrahman, Tanah Merah. Mengangkat tema ''Menata Hati di Bulan Ramadan'', ustadz mengajak jamaah memperbanyak amal dan menjaga lisan.</p><p>Kegiatan ini diikuti puluhan jamaah dari berbagai ranting dan diakhiri dengan sesi tanya jawab.</p>',
-    'c0000000-0000-0000-0000-000000000003',
+    '00000000-0000-0000-0005-000000000003',
     'published',
     false,
     false,
@@ -119,12 +119,12 @@ VALUES
     178
   ),
   (
-    'e0000000-0000-0000-0000-000000000003',
+    '00000000-0000-0000-0006-000000000003',
     'Santunan Anak Yatim dan Dhuafa Menyambut Hari Raya',
     'santunan-anak-yatim-dhuafa-2026',
     'Lembaga Sosial MWCNU Mandobo menyalurkan santunan kepada anak yatim dan dhuafa di wilayah Mandobo.',
     '<p>LazisNU Mandobo bersama MWCNU menyalurkan santunan kepada 75 anak yatim dan dhuafa. Penyaluran dilakukan di Balai Kampung, dihadiri pengurus ranting dan tokoh masyarakat.</p><p>Program ini merupakan wujud kepedulian NU terhadap warga yang membutuhkan di Distrik Mandobo.</p>',
-    'c0000000-0000-0000-0000-000000000004',
+    '00000000-0000-0000-0005-000000000004',
     'published',
     true,
     false,
@@ -133,12 +133,12 @@ VALUES
     342
   ),
   (
-    'e0000000-0000-0000-0000-000000000004',
+    '00000000-0000-0000-0006-000000000004',
     'MWCNU Mandobo Luncurkan Program Pendidikan Al-Qur''an',
     'program-pendidikan-alquran',
     'MWCNU Mandobo bersama LP Ma''arif meluncurkan program pendidikan baca tulis Al-Qur''an untuk anak-anak.',
     '<p>Program pendidikan Al-Qur''an resmi diluncurkan sebagai bagian dari upaya penguatan literasi keagamaan generasi muda di Mandobo.</p><p>Program ini akan berjalan di tiap ranting dengan pendampingan para guru TPQ.</p>',
-    'c0000000-0000-0000-0000-000000000005',
+    '00000000-0000-0000-0005-000000000005',
     'published',
     false,
     false,
@@ -147,12 +147,12 @@ VALUES
     96
   ),
   (
-    'e0000000-0000-0000-0000-000000000005',
+    '00000000-0000-0000-0006-000000000005',
     'Pengurus Ranting Dilantik, Siap Gerakkan Organisasi',
     'pelantikan-pengurus-ranting-2026',
     'Pelantikan pengurus ranting se-Distrik Mandobo berlangsung khidmat dan dihadiri unsur pemerintah distrik.',
     '<p>Pelantikan pengurus ranting se-Distrik Mandobo digelar di Aula Kantor Distrik. Masa khidmat pengurus baru adalah 2026-2030.</p><p>Dalam sambutannya, Ketua MWCNU berpesan agar pengurus ranting aktif mendampingi warga dan menjaga ukhuwah.</p>',
-    'c0000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0005-000000000001',
     'published',
     false,
     false,
@@ -167,7 +167,7 @@ SET title = EXCLUDED.title, excerpt = EXCLUDED.excerpt, content = EXCLUDED.conte
 INSERT INTO public.events (id, title, slug, description, event_type, status, starts_at, ends_at, location, organizer, pic_name, is_featured)
 VALUES
   (
-    'v0000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0003-000000000001',
     'Kajian Rutin Ahad Pagi',
     'kajian-rutin-ahad-pagi',
     'Kajian pekanan bertema keislaman dan ke-NU-an bersama jamaah Mandobo.',
@@ -181,7 +181,7 @@ VALUES
     true
   ),
   (
-    'v0000000-0000-0000-0000-000000000002',
+    '00000000-0000-0000-0003-000000000002',
     'Rapat Koordinasi Pengurus Bulanan',
     'rapat-koordinasi-pengurus-bulanan',
     'Evaluasi program kerja dan penyusunan langkah strategis bulan berikutnya.',
@@ -195,7 +195,7 @@ VALUES
     false
   ),
   (
-    'v0000000-0000-0000-0000-000000000003',
+    '00000000-0000-0000-0003-000000000003',
     'Bakti Sosial dan Santunan Anak Yatim',
     'bakti-sosial-santunan-anak-yatim',
     'Penyaluran santunan dan bingkisan kepada anak yatim serta warga kurang mampu.',
@@ -209,7 +209,7 @@ VALUES
     true
   ),
   (
-    'v0000000-0000-0000-0000-000000000004',
+    '00000000-0000-0000-0003-000000000004',
     'Pelatihan Dakwah untuk Kader Muda',
     'pelatihan-dakwah-kader-muda',
     'Pelatihan teknik ceramah dan manajemen dakwah bagi kader muda NU.',
@@ -336,22 +336,22 @@ VALUES
 ON CONFLICT (slug) DO UPDATE
 SET title = EXCLUDED.title, description = EXCLUDED.description;
 
--- 12. PROGRAM KERJA & MILITARY / MILESTONES
+-- 12. PROGRAM KERJA
 INSERT INTO public.programs (id, title, slug, description, field, period, status, sort_order)
 VALUES
-  ('pr000000-0000-0000-0000-000000000001', 'Penguatan Literasi & Digitalisasi Organisasi', 'penguatan-literasi-digitalisasi-organisasi', 'Pembangunan portal digital resmi, arsip daring, dan kanal publikasi multi-platform terpadu.', 'Informasi & Komunikasi', '2026-2028', 'active', 1),
-  ('pr000000-0000-0000-0000-000000000002', 'Kemandirian Ekonomi Jamaah & Koin LazisNU', 'kemandirian-ekonomi-jamaah-koin-lazisnu', 'Gerakan Koin NU di setiap ranting untuk mendukung dana abadi pendidikan dan santunan sosial.', 'Sosial & Ekonomi', '2026-2030', 'active', 2),
-  ('pr000000-0000-0000-0000-000000000003', 'Revitalisasi & Pembinaan Kaderisasi Berjenjang', 'revitalisasi-pembinaan-kaderisasi', 'Penyelenggaraan Pendidikan Kader Penggerak NU (PKPNU) dan Masa Kesetiaan Anggota (Makesta).', 'Kaderisasi', '2026-2027', 'active', 3)
+  ('00000000-0000-0000-0004-000000000001', 'Penguatan Literasi & Digitalisasi Organisasi', 'penguatan-literasi-digitalisasi-organisasi', 'Pembangunan portal digital resmi, arsip daring, dan kanal publikasi multi-platform terpadu.', 'Informasi & Komunikasi', '2026-2028', 'active', 1),
+  ('00000000-0000-0000-0004-000000000002', 'Kemandirian Ekonomi Jamaah & Koin LazisNU', 'kemandirian-ekonomi-jamaah-koin-lazisnu', 'Gerakan Koin NU di setiap ranting untuk mendukung dana abadi pendidikan dan santunan sosial.', 'Sosial & Ekonomi', '2026-2030', 'active', 2),
+  ('00000000-0000-0000-0004-000000000003', 'Revitalisasi & Pembinaan Kaderisasi Berjenjang', 'revitalisasi-pembinaan-kaderisasi', 'Penyelenggaraan Pendidikan Kader Penggerak NU (PKPNU) dan Masa Kesetiaan Anggota (Makesta).', 'Kaderisasi', '2026-2027', 'active', 3)
 ON CONFLICT (slug) DO UPDATE
 SET title = EXCLUDED.title, description = EXCLUDED.description, field = EXCLUDED.field, period = EXCLUDED.period, status = EXCLUDED.status;
 
 INSERT INTO public.program_items (program_id, title, description, progress, status, target_date, sort_order)
 VALUES
-  ('pr000000-0000-0000-0000-000000000001', 'Peluncuran Portal Resmi Web & Database Terpusat', 'Membangun sistem informasi berbasis web dengan performa tinggi & akses mobile-first.', 100, 'completed', '2026-08-31', 1),
-  ('pr000000-0000-0000-0000-000000000001', 'Digitalisasi Arsip Surat & SK Pengurus Se-Distrik', 'Pengumpulan dan digitalisasi dokumen historis serta SK ranting.', 60, 'active', '2026-11-30', 2),
-  ('pr000000-0000-0000-0000-000000000002', 'Distribusi 500 Kotak Koin NU ke Rumah Jamaah', 'Penyaluran kotak koin untuk pengumpulan infaq harian jamaah.', 80, 'active', '2026-10-15', 1),
-  ('pr000000-0000-0000-0000-000000000002', 'Beasiswa Pendidikan Santri Prasejahtera Mandobo', 'Bantuan SPP dan kitab bagi 30 santri berprestasi.', 50, 'active', '2026-12-31', 2),
-  ('pr000000-0000-0000-0000-000000000003', 'Pendidikan Kader Penggerak NU (PKPNU) Angkatan I', 'Kaderisasi intensif 3 hari bersama instruktur PWNU.', 30, 'active', '2027-02-15', 1)
+  ('00000000-0000-0000-0004-000000000001', 'Peluncuran Portal Resmi Web & Database Terpusat', 'Membangun sistem informasi berbasis web dengan performa tinggi & akses mobile-first.', 100, 'completed', '2026-08-31', 1),
+  ('00000000-0000-0000-0004-000000000001', 'Digitalisasi Arsip Surat & SK Pengurus Se-Distrik', 'Pengumpulan dan digitalisasi dokumen historis serta SK ranting.', 60, 'active', '2026-11-30', 2),
+  ('00000000-0000-0000-0004-000000000002', 'Distribusi 500 Kotak Koin NU ke Rumah Jamaah', 'Penyaluran kotak koin untuk pengumpulan infaq harian jamaah.', 80, 'active', '2026-10-15', 1),
+  ('00000000-0000-0000-0004-000000000002', 'Beasiswa Pendidikan Santri Prasejahtera Mandobo', 'Bantuan SPP dan kitab bagi 30 santri berprestasi.', 50, 'active', '2026-12-31', 2),
+  ('00000000-0000-0000-0004-000000000003', 'Pendidikan Kader Penggerak NU (PKPNU) Angkatan I', 'Kaderisasi intensif 3 hari bersama instruktur PWNU.', 30, 'active', '2027-02-15', 1)
 ON CONFLICT DO NOTHING;
 
 -- 13. SEJARAH & TOKOH
