@@ -16,7 +16,7 @@ export default async function MasukPage({
   const { next } = await searchParams;
 
   return (
-    <Container className="flex min-h-[70vh] items-center justify-center py-16">
+    <Container className="flex min-h-160 items-center justify-center py-16">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Masuk</CardTitle>

@@ -29,10 +29,10 @@ export default async function SejarahPage() {
           <h2 className="font-display text-xl font-bold">Lini Masa Sejarah</h2>
         </div>
 
-        <div className="border-primary/30 relative ml-4 space-y-8 border-l-2 pl-6">
+        <div className="border-primary/30 relative ml-3 space-y-8 border-l-2 pl-6">
           {timeline.map((item) => (
             <div key={item.id} className="group relative">
-              <div className="bg-primary text-primary-foreground absolute top-1 -left-[31px] flex size-6 items-center justify-center rounded-full text-xs shadow-xs">
+              <div className="bg-primary text-primary-foreground absolute top-1 -left-3.5 flex size-6 items-center justify-center rounded-full text-xs shadow-xs">
                 <Milestone className="size-3" />
               </div>
               <Badge variant="secondary" className="font-mono text-xs font-bold">

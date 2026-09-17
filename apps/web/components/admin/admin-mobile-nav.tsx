@@ -97,7 +97,7 @@ export function AdminMobileNav({ email, roleLabel }: AdminMobileNavProps) {
                     <Icon className="size-4 shrink-0" />
                     {item.label}
                     {item.disabled ? (
-                      <Badge variant="outline" className="ml-auto text-[10px]">
+                      <Badge variant="outline" className="ml-auto text-xs">
                         Segera
                       </Badge>
                     ) : null}

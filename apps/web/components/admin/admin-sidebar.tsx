@@ -7,9 +7,6 @@ import { Badge } from "@mwcnu/ui";
 import { cn } from "@/lib/utils";
 import { ADMIN_NAV } from "@/lib/admin-navigation";
 
-const EXPANDED_WIDTH = 232;
-const COLLAPSED_WIDTH = 64;
-
 export function AdminSidebar() {
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
@@ -19,8 +16,10 @@ export function AdminSidebar() {
       aria-label="Navigasi admin"
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
-      className="border-border bg-card sticky top-4 hidden shrink-0 flex-col gap-1 overflow-hidden rounded-xl border p-2 transition-all duration-200 ease-in-out lg:flex"
-      style={{ width: expanded ? EXPANDED_WIDTH : COLLAPSED_WIDTH }}
+      className={cn(
+        "border-border bg-card duration-base sticky top-4 hidden shrink-0 flex-col gap-1 overflow-hidden rounded-xl border p-2 transition-all ease-in-out lg:flex",
+        expanded ? "w-58" : "w-16"
+      )}
     >
       {ADMIN_NAV.map((item) => {
         const Icon = item.icon;
@@ -31,7 +30,7 @@ export function AdminSidebar() {
           <span className="flex min-w-0 flex-1 items-center gap-1">
             <span className="truncate">{item.label}</span>
             {item.disabled ? (
-              <Badge variant="outline" className="shrink-0 text-[10px]">
+              <Badge variant="outline" className="shrink-0 text-xs">
                 Segera
               </Badge>
             ) : null}

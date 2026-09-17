@@ -75,7 +75,7 @@ export default async function ProgramKerjaPage() {
                             {item.title}
                           </p>
                           {item.progress === 100 ? (
-                            <CheckCircle2 className="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                            <CheckCircle2 className="text-success size-4 shrink-0" />
                           ) : (
                             <Clock className="text-secondary size-4 shrink-0" />
                           )}
@@ -84,7 +84,7 @@ export default async function ProgramKerjaPage() {
                           <p className="text-muted-foreground text-xs">{item.description}</p>
                         )}
                         <div className="pt-2">
-                          <div className="text-muted-foreground mb-1 flex justify-between text-[11px] font-medium">
+                          <div className="text-muted-foreground mb-1 flex justify-between text-xs font-medium">
                             <span>Progress</span>
                             <span>{item.progress}%</span>
                           </div>

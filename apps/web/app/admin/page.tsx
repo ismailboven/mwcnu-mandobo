@@ -28,7 +28,7 @@ export default async function AdminDashboardPage() {
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="success" className="gap-1.5 px-3 py-1">
-            <span className="size-2 animate-pulse rounded-full bg-emerald-400" />
+            <span className="bg-primary-foreground size-2 animate-pulse rounded-full" />
             Sistem Aktif
           </Badge>
           <Button asChild size="sm" variant="outline" className="gap-1.5">

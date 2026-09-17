@@ -151,7 +151,7 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        class: "rich-text-content min-h-[280px] px-4 py-3 focus:outline-none",
+        class: "rich-text-content min-h-72 px-4 py-3 focus:outline-none",
       },
     },
     onUpdate: ({ editor }) => onChangeRef.current(editor.getHTML()),
@@ -358,7 +358,7 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
             onChange(event.target.value);
           }}
           spellCheck={false}
-          className="bg-background min-h-[280px] w-full resize-y px-4 py-3 font-mono text-sm leading-6 focus:outline-none"
+          className="bg-background min-h-72 w-full resize-y px-4 py-3 font-mono text-sm leading-6 focus:outline-none"
           aria-label="Kode HTML konten"
         />
       ) : (

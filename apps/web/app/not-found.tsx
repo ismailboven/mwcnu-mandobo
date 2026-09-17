@@ -4,13 +4,13 @@ import { Container } from "@/components/layout/container";
 
 export default function NotFound() {
   return (
-    <Container className="flex min-h-[70vh] items-center justify-center py-16">
+    <Container className="flex min-h-160 items-center justify-center py-16">
       <Card className="w-full max-w-md text-center">
         <CardHeader>
           <CardTitle className="text-2xl">Halaman Tidak Ditemukan</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Halaman yang Anda cari tidak ada atau telah dipindahkan.
           </p>
           <Button asChild>

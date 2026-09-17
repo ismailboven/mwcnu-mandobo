@@ -111,7 +111,7 @@ function LeaderCard({
               Email
             </a>
           )}
-          <span className="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+          <span className="text-success ml-auto inline-flex items-center gap-1 text-xs font-medium">
             <UserCheck className="size-3.5" /> Aktif
           </span>
         </div>

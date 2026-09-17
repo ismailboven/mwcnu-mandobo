@@ -89,7 +89,7 @@ export default async function DownloadPage({ searchParams }: Props) {
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-[10px] font-semibold tracking-wider uppercase"
+                    className="text-xs font-semibold tracking-wider uppercase"
                   >
                     {doc.category}
                   </Badge>
@@ -106,7 +106,7 @@ export default async function DownloadPage({ searchParams }: Props) {
                 )}
 
                 {doc.document_number && (
-                  <p className="text-muted-foreground mt-2 font-mono text-[11px]">
+                  <p className="text-muted-foreground mt-2 font-mono text-xs">
                     No: {doc.document_number}
                   </p>
                 )}
